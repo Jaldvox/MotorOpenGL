@@ -4,11 +4,12 @@
 #include <surface/Shader.h>
 #include <surface/Texture.h>
 #include <filesystem>
+#include <sol/sol.hpp>
+#include <component/ScriptInstance.h>
 
 namespace fs = std::filesystem;
 
 namespace cme {
-
 	/// @brief Se encarga de la gesiton de recursos del proyecto, desde shaders hasta imagenes. Utiliza el patron Singleton y se puede acceder a su instancia con rscrM()
 	class ResourceManager : public Singleton<ResourceManager>
 	{
@@ -23,6 +24,10 @@ namespace cme {
 		std::unordered_map<std::string, std::unique_ptr<Texture>> _texturesMap;
 		std::vector<std::string> _texturesNames;
 
+		// ----- SCRIPTS -----
+		std::unordered_map<std::string, ScriptInstance> _scripts;
+		std::vector<std::string> _scriptsNames;
+
 	public:
 		virtual ~ResourceManager();
 
@@ -36,21 +41,25 @@ namespace cme {
 		/// @param key La clave del shader
 		/// @return Devuelve un puntero inteligente al shader
 		Shader* getShader(std::string key);
-
 		Texture* getTexture(std::string key);
+		ScriptInstance& getScript(std::string& key);
+
 		/// @brief Busca todos los shaders cargados y los almacena en un vector
 		/// @return Un vector de shaders
 		std::vector<Shader*> getAllShaders();
 		/// @brief Busca el nombre de todos los shader cargados
 		/// @return Un vector de nombres
 		std::vector<std::string> getAllShaderNames();
-
 		std::vector<std::string> getAllTextureNames();
+		std::vector<std::string> getAllScriptNames();
+
+		void loadAllScripts(sol::state& lua);
 	private:
 		ResourceManager() = default;
 
 		void loadShader(fs::path file);
 		void loadTexture(fs::path file);
+		void loadScript(const fs::path& path);
 
 		/// @brief Inicializa el Resource Manager
 		/// @return False si falla
@@ -67,6 +76,9 @@ namespace cme {
 			else if constexpr (std::is_same_v<T, Texture>) {
 				if (std::find(_texturesNames.begin(), _texturesNames.end(), name) != _texturesNames.end()) return;
 				loadTexture(file);
+			}
+			else if constexpr (std::is_same_v<T, ScriptInstance>) {
+				loadScript(file);
 			}
 			else {
 				static_assert(!sizeof(T), "Tipo de recurso no soportado");

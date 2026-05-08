@@ -14,9 +14,15 @@ namespace cme {
 	Scene::Scene(std::string name) : _name(name) {
 		_cam = new Camera();
 		_globalLight = new GlobalLight();
+		initLua();
+		rscrM().loadAllScripts(_lua);
 	}
 
 	Scene::~Scene() {
+		for (auto& group : _gameObjectsByGroup)
+			group.clear();
+
+		_gizmos.clear();
 		delete _cam;
 		delete _globalLight;
 	}
@@ -39,9 +45,18 @@ namespace cme {
 
 		// Exponer Transform
 		_lua.new_usertype<Transform>("Transform",
-			"position", sol::property(&Transform::getPosition, &Transform::setPosition),
-			"rotate", &Transform::rotate,
-			"scale", sol::property(&Transform::getScale, &Transform::setScale)
+			"position", sol::property(
+				static_cast<const glm::vec3 & (Transform::*)() const>(&Transform::getPosition),
+				static_cast<void (Transform::*)(const glm::vec3&)>(&Transform::setPosition)
+			),
+			"scale", sol::property(
+				static_cast<const glm::vec3 & (Transform::*)() const>(&Transform::getScale),
+				static_cast<void (Transform::*)(const glm::vec3&)>(&Transform::setScale)
+			),
+			"rotate", sol::property(
+				static_cast<const glm::vec3&(Transform::*)() const>(&Transform::getRotation),
+				static_cast<void (Transform::*)(const glm::vec3&)>(&Transform::setRotation)
+			)
 		);
 	}
 

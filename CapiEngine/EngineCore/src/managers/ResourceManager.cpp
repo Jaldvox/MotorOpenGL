@@ -2,6 +2,8 @@
 #include <filesystem>
 #include <utils/logger.h>
 #include <surface/Texture.h>
+#include <managers/SceneManager.h>
+#include <core/Scene.h>
 
 namespace fs = std::filesystem;
 
@@ -38,6 +40,18 @@ namespace cme {
 		LOG_WARN("Se intento obtener la textura '" << key << "', pero no existe");
 		return nullptr;
 	}
+
+	ScriptInstance& ResourceManager::getScript(std::string& key) {
+		auto it = _scripts.find(key);
+		if (it != _scripts.end()) {
+			return it->second;
+		}
+
+		LOG_WARN("Se intento obtener el script '" << key << "', pero no existe, devulviendo default");
+		ScriptInstance s;
+		return s;
+	}
+
 
 	void ResourceManager::loadShader(fs::path file) {
 
@@ -113,5 +127,30 @@ namespace cme {
 
 	std::vector<std::string> ResourceManager::getAllTextureNames() {
 		return _texturesNames;
+	}
+
+	std::vector<std::string> ResourceManager::getAllScriptNames() {
+		return _scriptsNames;
+	}
+
+	void ResourceManager::loadScript(const fs::path& path) {
+		std::string name = path.stem().string();
+		if (_scripts.count(name)) {
+			LOG_ERROR(std::format("Nombre de script repetido, ignorando el segundo. Path {}", path.string()));
+			return;
+		}
+
+		ScriptInstance script;
+		script.filepath = path.string();
+		script.name = name;
+
+		_scripts[name] = script;
+		_scriptsNames.push_back(name);
+	}
+
+	void ResourceManager::loadAllScripts(sol::state& lua) {
+		for (auto& s : _scripts) {
+			s.second.reload(lua);
+		}
 	}
 }

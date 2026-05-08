@@ -1,64 +1,61 @@
 #include <component/LuaScript.h>
 #include <ec/entity.h>
 #include <core/Scene.h>
+#include <managers/ResourceManager.h>
+#include <managers/SceneManager.h>
 
 namespace cme {
     void LuaScript::initComponent() {
         if (auto entity = _entity.lock()) {
-            auto& lua = entity->getScene()->getLuaState();
-
-            if (!filepath.empty()) loadScript(filepath, lua);
+            _lua = &entity->getScene()->getLuaState();
         }
     }
 
+    void LuaScript::addScript(ScriptInstance& script) {
+        if (!_lua) {
+            auto* l = &sceneM().activeScene()->getLuaState();
+            if (l) {
+                _scripts.push_back(script);
+            }
+            return;
+        }
+
+        _scripts.push_back(script);
+    }
+
+    void LuaScript::removeScript(const std::string& path) {
+        std::erase_if(_scripts, [&](const ScriptInstance& s) {
+            return s.filepath == path;
+            });
+    }
 
     void LuaScript::start() {
-        if (startFunc.valid()) {
-            startFunc(scriptInstance);
-        }
+        for (auto& s : _scripts) s.start();
     }
 
     void LuaScript::update() {
-        if (updateFunc.valid()) {
-            updateFunc(scriptInstance);
-        }
+        for (auto& s : _scripts) s.update();
     }
 
-    void LuaScript::loadScript(const std::string& path, sol::state& lua) {
-        filepath = path;
-
-        // Ejecuta el archivo .lua — debe devolver una tabla con Start/Update
-        sol::load_result file = lua.load_file(path);
-        if (!file.valid()) {
-            sol::error err = file;
-            LOG_ERROR("Error cargando script Lua: " + std::string(err.what()));
-            return;
+    void LuaScript::serialize(cme::JsonSerializer& s) const {
+        s.beginArray("scripts");
+        for (auto& script : _scripts) {
+            s.pushObjectToArray();
+            s.write("name", script.name);
+            s.endScope();
         }
-
-        // Obtenemos la "clase" que define el script
-        sol::table scriptClass = file();
-        if (!scriptClass.valid()) {
-            LOG_ERROR("El script no devolvió una tabla válida: " + path);
-            return;
-        }
-
-        // Creamos una instancia propia para este componente
-        // (así dos entidades con el mismo script no comparten estado)
-        scriptInstance = lua.create_table();
-        scriptInstance[sol::metatable_key] = scriptClass;
-        scriptClass["__index"] = scriptClass;
-
-        // Guardamos las funciones si existen
-        startFunc = scriptClass["Start"];
-        updateFunc = scriptClass["Update"];
+        s.endScope();
     }
 
-    void LuaScript::serialize(JsonSerializer& s) const {
-        s.write("script", filepath);
-    }
-
-    void LuaScript::deserialize(JsonSerializer& s) {
-        filepath = s.readString("script");
-        // loadScript se llama en initComponent(), cuando la Scene ya existe
+    void LuaScript::deserialize(cme::JsonSerializer& s) {
+        s.beginArray("scripts");
+        size_t n = s.getArraySize();
+        for (size_t i = 0; i < n; i++) {
+            s.enterElement(i);
+            auto name = s.readString("name");
+            addScript(rscrM().getScript(name));
+            s.endScope();
+        }
+        s.endScope();
     }
 }

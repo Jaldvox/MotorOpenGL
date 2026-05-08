@@ -37,9 +37,11 @@ namespace cme::editor {
 		case ResourceType::Shader:
 			rscrM().loadResource<Shader>(file);
 			break;
-
 		case ResourceType::Texture:
 			rscrM().loadResource<Texture>(file);
+			break;
+		case ResourceType::Script:
+			rscrM().loadResource<ScriptInstance>(file);
 			break;
 
 		default:
@@ -54,7 +56,10 @@ namespace cme::editor {
 		if (!fs::is_directory(file)) {
 			auto extension = file.extension().string();
 
-			if (std::count(SHADER_EXTENSIONS.begin(), SHADER_EXTENSIONS.end(), extension)) {
+			if (extension == ".lua") {
+				return ResourceType::Script;
+			}
+			else if (std::count(SHADER_EXTENSIONS.begin(), SHADER_EXTENSIONS.end(), extension)) {
 				return ResourceType::Shader;
 			}
 			else if (std::count(IMAGE_EXTENSIONS.begin(), IMAGE_EXTENSIONS.end(), extension)) {

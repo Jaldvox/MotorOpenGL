@@ -9,11 +9,13 @@
 #include <component/Transform.h>
 #include <component/MeshRenderer.h>
 #include <component/Light.h>
+#include <component/LuaScript.h>
 
 #include <drawGUI/material/MaterialGUI.h>
 #include <drawGUI/component/TransformGUI.h>
 #include <drawGUI/component/MeshRendererGUI.h>
 #include <drawGUI/component/LightGUI.h>
+#include <drawGUI/component/LuaScriptGUI.h>
 
 namespace cme::editor {
 	void InspectorWindow::renderWindowContent() {
@@ -86,6 +88,8 @@ namespace cme::editor {
 					entitySp->addComponent<MeshRenderer>();
 				if (ImGui::Selectable("Light") && !entitySp->hasComponent<Light>())
 					entitySp->addComponent<Light>();
+				if (ImGui::Selectable("Lua Script") && !entitySp->hasComponent<LuaScript>())
+					entitySp->addComponent<LuaScript>();
 
 				ImGui::EndPopup();
 			}
@@ -129,5 +133,10 @@ namespace cme::editor {
 			LightGUI gui(static_cast<Light*>(c));
 			gui.drawOnInspector();
 		};
+
+		_componentUIRegistry[typeid(cme::LuaScript)] = [](ec::Component* c) {
+			LuaScriptGUI lua(static_cast<LuaScript*>(c));
+			lua.drawOnInspector();
+			};
 	}
 }
