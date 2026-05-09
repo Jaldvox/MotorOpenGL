@@ -45,6 +45,8 @@ namespace cme {
 		void start();
 		void update();
 		void render() const;
+		void processInput();
+		void clearRender();
 		void run();
 
 		void swapAndTime();

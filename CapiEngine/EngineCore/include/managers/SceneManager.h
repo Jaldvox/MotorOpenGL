@@ -10,6 +10,7 @@ namespace cme {
 		friend class Singleton<SceneManager>;
 	private:
 		Scene* _currentScene = nullptr;
+		bool _doStart = true;
 	public:
 		virtual ~SceneManager();
 
@@ -30,6 +31,8 @@ namespace cme {
 		SceneManager(SceneManager&&) = delete;
 		SceneManager& operator=(SceneManager&) = delete;
 		SceneManager& operator=(SceneManager&&) = delete;
+
+		void setDoStart(bool start) { _doStart = start; }
 	private:
 		SceneManager() = default;
 

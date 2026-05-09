@@ -13,21 +13,37 @@
 #include <core/Scene.h>
 #include <core/Camera.h>
 
+#include <ResourcesLoader.h>
+
 using namespace cme;
 
 void inputs();
 
 int main(int argc, char* argv[]) {
+	std::filesystem::path exeDir = std::filesystem::path(argv[0]).parent_path();
+	std::string name = std::filesystem::path(argv[0]).stem().string();
+
 	if (!cme::GLApplication::Init("")) {
 		LOG_ERROR("No se pudo inicializar GLApplication");
 		return -1;
 	}
 
+	runtime::ResourcesLoader rsc;
+	rsc.init(exeDir, name);
+
 	std::string path;
 	if (argc > 1) {
 		path = argv[1];
+		cme::sceneM().loadScene(path);
 	}
-	cme::sceneM().loadScene(path);
+	else {
+		std::string configFile = (exeDir / (name + ".json")).string();
+		JsonSerializer s;
+		s.load(configFile);
+
+		std::string startScene = exeDir.string() + "/" + s.readString(startScene);
+		sceneM().loadScene(startScene);
+	}
 
 	inputs();
 

@@ -13,11 +13,14 @@ namespace fs = std::filesystem;
 namespace cme::editor {
 	class UIManager;
 	class ProjectFileData;
+	class ProjectBuilder;
 
 	class EditorApp : public Singleton<EditorApp>{
 		friend class Singleton<EditorApp>;
 	private:
 		std::shared_ptr<UIManager> _ui;
+		std::shared_ptr<ProjectBuilder> _builder;
+
 		fs::path _projectPath;
 		fs::path _enginePath;
 
@@ -47,6 +50,8 @@ namespace cme::editor {
 		const fs::path& projectFile() const { return _projectFile; }
 
 		ProjectFileData* projectData() { return _projectData; }
+		std::shared_ptr<ProjectBuilder> projectBuilder() { return _builder; }
+
 	private:
 		EditorApp() = default;
 		bool init(fs::path enginePath, fs::path projectPath, fs::path projFile);

@@ -24,6 +24,7 @@
 #include <windows/InspectorWindow.h>
 #include <project/ProjectLoader.h>
 #include <project/ProjectFileData.h>
+#include <project/ProjectBuilder.h>
 
 namespace cme::editor {
 
@@ -53,6 +54,8 @@ namespace cme::editor {
 			return false;
 		}
 
+		_builder = std::make_shared<ProjectBuilder>();
+
 		// Configuramos eventos de la UI
 		_ui->setCreateCubeCallback([]() {
 			sceneM().activeScene()->addCubeToScene();
@@ -73,6 +76,7 @@ namespace cme::editor {
 			return;
 		}
 
+		sceneM().setDoStart(false);
 		gla().start();
 		_ui->start();
 
@@ -83,7 +87,8 @@ namespace cme::editor {
 		createGizmos();
 
 		while (!glfwWindowShouldClose(gla().window())) {
-			gla().update();
+			gla().clearRender();
+			gla().processInput();
 
 			_ui->bind();
 			sceneM().render();

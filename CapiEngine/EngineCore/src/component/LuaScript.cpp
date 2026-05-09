@@ -12,12 +12,18 @@ namespace cme {
     }
 
     void LuaScript::addScript(ScriptInstance& script) {
+        // Asegurar que tenemos una referencia valida al lua state
         if (!_lua) {
-            auto* l = &sceneM().activeScene()->getLuaState();
-            if (l) {
-                _scripts.push_back(script);
+            if (auto entity = _entity.lock()) {
+                _lua = &entity->getScene()->getLuaState();
+            } else {
+                auto* l = &sceneM().activeScene()->getLuaState();
+                if (!l) {
+                    LOG_ERROR("No se pudo obtener lua state para addScript");
+                    return;
+                }
+                _lua = l;
             }
-            return;
         }
 
         _scripts.push_back(script);
@@ -30,11 +36,19 @@ namespace cme {
     }
 
     void LuaScript::start() {
-        for (auto& s : _scripts) s.start();
+        try {
+            for (auto& s : _scripts) s.start();
+        } catch (const std::exception& e) {
+            LOG_ERROR("Error en script start: " + std::string(e.what()));
+        }
     }
 
     void LuaScript::update() {
-        for (auto& s : _scripts) s.update();
+        try {
+            for (auto& s : _scripts) s.update();
+        } catch (const std::exception& e) {
+            LOG_ERROR("Error en script update: " + std::string(e.what()));
+        }
     }
 
     void LuaScript::serialize(cme::JsonSerializer& s) const {

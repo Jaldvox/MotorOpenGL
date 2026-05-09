@@ -133,12 +133,8 @@ namespace cme {
 	}
 
 	void GLApplication::update() {
-		inpM().proccessInput();
-
-		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_DEPTH_TEST);
-
+		processInput();
+		clearRender();
 		sceneM().update();
 	}
 
@@ -161,5 +157,14 @@ namespace cme {
 		float currentFrame = glfwGetTime();
 		_deltaTime = currentFrame - _lastFrame;
 		_lastFrame = currentFrame;
+	}
+
+	void GLApplication::processInput() {
+		inpM().proccessInput();
+	}
+	void GLApplication::clearRender() {
+		glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_DEPTH_TEST);
 	}
 }

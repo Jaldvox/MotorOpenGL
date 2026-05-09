@@ -41,7 +41,7 @@ namespace cme {
 
         for (int i = 0; i < count; ++i) {
             const std::string base = std::format("pointLights[{}].", i);
-            shader->setUniform(base + "position",  _lights[i].position);
+            shader->setUniform(base + "position",  *_lights[i].position);
             shader->setUniform(base + "color",     _lights[i].color);
             shader->setUniform(base + "intensity",  _lights[i].intensity);
             shader->setUniform(base + "constant",   _lights[i].constant);

@@ -8,7 +8,7 @@ namespace cme {
 
     /// @brief Componente que registra una luz puntual en el LightManager.
     ///        Requiere un Transform en la misma entidad.
-    class Light : public ec::Component, public ec::UpdateComponent
+    class Light : public ec::Component
     {
     public:
         PointLight  _pointLight;    // Datos de la luz (posicion se sincroniza cada frame)
@@ -21,7 +21,6 @@ namespace cme {
         ~Light() override;
 
         void initComponent() override;
-        void update() override;  // Sincroniza la posicion con el Transform cada frame
 
         void serialize(JsonSerializer& s) const override;
         void deserialize(JsonSerializer& s)       override;

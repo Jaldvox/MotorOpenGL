@@ -19,7 +19,7 @@ namespace cme {
             assert(_tr != nullptr && "El transform de un Light es null");
 
             // Sincronizamos la posicion inicial antes de registrar
-            _pointLight.position = _tr->getPosition();
+            _pointLight.position = &_tr->getPosition();
 
             // Registramos la luz en el manager y guardamos el indice
             _lightIndex = lightM().addLight(_pointLight);
@@ -27,14 +27,6 @@ namespace cme {
             // Si la entidad tiene mesh, la marcamos como fuente de luz visual
             if (auto mesh = entitySp->getComponent<MeshRenderer>())
                 mesh->setLightSource(true);
-        }
-    }
-
-    void Light::update() {
-        // Mantenemos la posicion sincronizada con el Transform en cada frame
-        if (_lightIndex >= 0) {
-            _pointLight.position = _tr->getPosition();
-            lightM().setLight(_lightIndex, _pointLight);
         }
     }
 

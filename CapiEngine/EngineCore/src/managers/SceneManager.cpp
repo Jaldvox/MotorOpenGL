@@ -19,7 +19,7 @@ namespace cme {
 	void SceneManager::start() {
 		if (!_currentScene) return;
 
-		_currentScene->start();
+		if (_doStart) _currentScene->start();
 	}
 
 	void SceneManager::update() {

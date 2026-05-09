@@ -5,6 +5,7 @@
 #include <ec/component.h>
 #include <component/Transform.h>
 #include <component/MeshRenderer.h>
+#include <component/LuaScript.h>
 #include <mesh/QuadMesh.h>
 #include <mesh/CubeMesh.h>
 #include <lighting/GlobalLight.h>
@@ -19,12 +20,23 @@ namespace cme {
 	}
 
 	Scene::~Scene() {
-		for (auto& group : _gameObjectsByGroup)
+		// Limpiar entities ANTES de destruir el lua state
+		// Esto es crítico porque los componentes LuaScript necesitan acceso al state
+		for (auto& group : _gameObjectsByGroup) {
+			for (auto& entity : group) {
+				// Si la entity tiene LuaScript, limpiar scripts antes
+				if (auto luaScript = entity->getComponent<LuaScript>()) {
+					for (auto& s : luaScript->scripts())
+						s.clear();
+				}
+			}
 			group.clear();
+		}
 
 		_gizmos.clear();
 		delete _cam;
 		delete _globalLight;
+		// _lua se destruye automáticamente al salir del scope del destructor
 	}
 
 	void Scene::initLua() {

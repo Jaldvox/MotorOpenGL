@@ -16,7 +16,11 @@ namespace cme {
         __CMPID_DECL__(ec::comp::LUA_SCRIPT)
 
         LuaScript() = default;
-        ~LuaScript() override = default;
+        ~LuaScript() {
+            for (auto& s : _scripts)
+                s.clear();
+            _scripts.clear();
+        }
 
         void initComponent() override;
 
@@ -28,7 +32,7 @@ namespace cme {
         void        removeScript(const std::string& path);
         int         scriptCount() const { return _scripts.size(); }
         std::string getScriptPath(int i) const { return _scripts[i].filepath; }
-        const std::vector<ScriptInstance>& scripts() { return _scripts; }
+        std::vector<ScriptInstance>& scripts() { return _scripts; }
 
 
         void serialize(JsonSerializer& s) const override;

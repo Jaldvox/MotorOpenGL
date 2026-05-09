@@ -13,6 +13,9 @@
 #include <windows/ProjectWindow.h>
 #include <windows/FileExplorerWindow.h>
 
+#include <project/ProjectBuilder.h>
+#include <project/ProjectFileData.h>
+
 #include <managers/SceneManager.h>
 
 #include <utils/logger.h>
@@ -182,6 +185,15 @@ namespace cme::editor {
 			}
 
 			if (ImGui::BeginMenu("Run")) {
+				if (ImGui::MenuItem("Compile + Play")) {
+					editor().projectBuilder()->build();
+					launchRuntime(sceneM().activeScene()->getPath());
+				}
+
+				if (ImGui::MenuItem("Compile")) {
+					editor().projectBuilder()->build();
+				}
+
 				if (ImGui::MenuItem("Play")) {
 					launchRuntime(sceneM().activeScene()->getPath());
 				}
@@ -194,9 +206,13 @@ namespace cme::editor {
 	}
 
 	void UIManager::launchRuntime(const std::string& scenePath) const{
-		std::string runtimeExe = CMAKE_SOURCE_DIR "/out/build/x64-Debug/Runtime/EngineRuntime.exe";
-		std::string args = runtimeExe + " " + scenePath;
-		std::string workingDir = CMAKE_SOURCE_DIR;
+		std::string editorDir = editor().projectPath().string();
+		std::string runtimeExe = editorDir + "/build/" + editor().projectData()->projectData().name + ".exe";
+
+		// El working directory es la carpeta del proyecto (donde están los assets)
+		std::string projectDir = editor().projectPath().string();
+
+		std::string args = "\"" + runtimeExe + "\" \"" + scenePath + "\"";
 
 		STARTUPINFOA si = { sizeof(si) };
 		PROCESS_INFORMATION pi;
@@ -206,8 +222,8 @@ namespace cme::editor {
 			args.data(),
 			nullptr, nullptr,
 			FALSE, 0,
-			nullptr, 
-			workingDir.c_str(),
+			nullptr,
+			projectDir.c_str(),   // working dir = carpeta del proyecto
 			&si, &pi
 		);
 
@@ -217,9 +233,9 @@ namespace cme::editor {
 			return;
 		}
 
-		LOG_INFO("Runtime lanzado correctamente");
+		LOG_INFO("Runtime lanzado desde: " + runtimeExe);
+		LOG_INFO("Proyecto en: " + projectDir);
 
-		// Guardar el handle por si quieres cerrarlo después
 		CloseHandle(pi.hThread);
 		CloseHandle(pi.hProcess);
 	}
