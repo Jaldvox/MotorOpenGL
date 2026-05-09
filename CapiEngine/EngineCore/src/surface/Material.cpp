@@ -118,6 +118,7 @@ namespace cme {
 	}
 
 	void Material::serialize(JsonSerializer& s) const {
+		s.write("shaderName", _shader->getName());
 		s.write("type", (int)_shader->type());
 		s.beginScope("uniforms");
 		for (auto& [name, p] : _properties) {
@@ -145,6 +146,8 @@ namespace cme {
 	}
 
 	void Material::deserialize(JsonSerializer& s) {
+		auto sn = s.readString("shaderName");
+		_shader = rscrM().getShader(sn);
 		_shader->setType(s.readInt("type"));
 		s.beginScope("uniforms");
 		int count = (int)s.getScopeSize(); // número de keys en el scope uniforms

@@ -67,7 +67,9 @@ namespace cme {
         for (size_t i = 0; i < n; i++) {
             s.enterElement(i);
             auto name = s.readString("name");
-            addScript(rscrM().getScript(name));
+            ScriptInstance* script = rscrM().getScript(name);
+            if (script) addScript(*script);
+            else LOG_ERROR("Script no encontrado al deserializar: " + name);
             s.endScope();
         }
         s.endScope();

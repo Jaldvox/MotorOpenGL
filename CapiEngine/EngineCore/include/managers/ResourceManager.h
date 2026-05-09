@@ -42,7 +42,7 @@ namespace cme {
 		/// @return Devuelve un puntero inteligente al shader
 		Shader* getShader(std::string key);
 		Texture* getTexture(std::string key);
-		ScriptInstance& getScript(std::string& key);
+		ScriptInstance* getScript(std::string& key);
 
 		/// @brief Busca todos los shaders cargados y los almacena en un vector
 		/// @return Un vector de shaders
@@ -54,6 +54,10 @@ namespace cme {
 		std::vector<std::string> getAllScriptNames();
 
 		void loadAllScripts(sol::state& lua);
+		void clearScriptSolObjects() {
+			for (auto& [key, script] : _scripts)
+				script.clear();
+		}
 	private:
 		ResourceManager() = default;
 

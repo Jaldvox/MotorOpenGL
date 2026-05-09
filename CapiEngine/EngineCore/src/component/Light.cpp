@@ -16,7 +16,11 @@ namespace cme {
     void Light::initComponent() {
         if (auto entitySp = _entity.lock()) {
             _tr = entitySp->getComponent<Transform>();
-            assert(_tr != nullptr && "El transform de un Light es null");
+            
+            if (!_tr) {
+                LOG_ERROR(std::format("La luz de la entidad {} no tiene Transform. Agregalo al archivo de escena.", entitySp->name()));
+                return;
+            }
 
             // Sincronizamos la posicion inicial antes de registrar
             _pointLight.position = &_tr->getPosition();

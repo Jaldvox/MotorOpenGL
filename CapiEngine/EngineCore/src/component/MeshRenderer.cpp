@@ -36,12 +36,15 @@ namespace cme {
 			_cam = entitySp->getScene()->getCamera();
 			_tr = entitySp->getComponent<Transform>();
 
-			assert(_tr != nullptr);
+			if (!_tr) {
+				LOG_ERROR(std::format("El MeshRenderer de la entidad {} no tiene Transform. Agregalo al archivo de escena.", entitySp->name()));
+				return;
+			}
 
 			if (_mesh) {
 				int meshID = _mesh->id();
 				if (meshID >= 0 && meshID < MESH_T_NAMES.size()) _currentMeshType = MESH_T_NAMES[meshID];
-				else LOG_ERROR(std::format("El id del mesh no es valido. Entidad: {} | ID: ", entitySp->name(), meshID));
+				else LOG_ERROR(std::format("El id del mesh no es valido. Entidad: {} | ID: {}", entitySp->name(), meshID));
 			}
 		}
 	}

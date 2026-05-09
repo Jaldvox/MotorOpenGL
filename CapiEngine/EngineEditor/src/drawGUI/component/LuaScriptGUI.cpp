@@ -34,7 +34,7 @@ namespace cme::editor {
 
 				for (auto& name : rscrM().getAllScriptNames()) {
 					if (ImGui::Selectable(name.c_str())) {
-						_lua->addScript(rscrM().getScript(name));
+						_lua->addScript(*rscrM().getScript(name));
 						ImGui::CloseCurrentPopup();
 					}
 				}

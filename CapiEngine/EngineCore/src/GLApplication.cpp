@@ -24,20 +24,20 @@
 
 namespace cme {
 	GLApplication::~GLApplication() {
-		if (ResourceManager::HasInstance()) {
-			ResourceManager::Release();
-		}
-
 		if (SceneManager::HasInstance()) {
 			SceneManager::Release();
 		}
 
-		if (Logger::HasInstance()) {
-			Logger::Release();
-		}
-
 		if (InputManager::HasInstance()) {
 			InputManager::Release();
+		}
+
+		if (ResourceManager::HasInstance()) {
+			ResourceManager::Release();
+		}
+
+		if (Logger::HasInstance()) {
+			Logger::Release();
 		}
 
 		glfwDestroyWindow(_window);
@@ -55,7 +55,7 @@ namespace cme {
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 		glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
-		_window = glfwCreateWindow(_width, _height, std::string("Capi Engine - " + name).c_str(), NULL, NULL);
+		_window = glfwCreateWindow(_width, _height, std::string(name).c_str(), NULL, NULL);
 		if (_window == NULL)
 		{
 			LOG_ERROR("Failed to create GLFW window");

@@ -7,7 +7,8 @@ namespace cme::runtime {
 	bool ResourcesLoader::init(fs::path path, std::string& projectName) {
 		// load project resources
 		loadFilesRecursive(path / "assets");
-
+		loadFilesRecursive(path / "core");
+		
 		return true;
 	}
 
@@ -34,12 +35,15 @@ namespace cme::runtime {
 	void ResourcesLoader::addResourceToCore(const ResourceType& type, const fs::path& file) {
 		switch (type) {
 		case ResourceType::Shader:
+			LOG_INFO(std::format("Añadiendo shader: {}", file.filename().string()));
 			rscrM().loadResource<Shader>(file);
 			break;
 		case ResourceType::Texture:
+			LOG_INFO(std::format("Añadiendo Textura: {}", file.filename().string()));
 			rscrM().loadResource<Texture>(file);
 			break;
 		case ResourceType::Script:
+			LOG_INFO(std::format("Añadiendo Script: {}", file.filename().string()));
 			rscrM().loadResource<ScriptInstance>(file);
 			break;
 

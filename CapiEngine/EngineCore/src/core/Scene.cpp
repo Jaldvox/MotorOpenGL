@@ -33,10 +33,11 @@ namespace cme {
 			group.clear();
 		}
 
+		rscrM().clearScriptSolObjects();
+
 		_gizmos.clear();
 		delete _cam;
 		delete _globalLight;
-		// _lua se destruye automáticamente al salir del scope del destructor
 	}
 
 	void Scene::initLua() {

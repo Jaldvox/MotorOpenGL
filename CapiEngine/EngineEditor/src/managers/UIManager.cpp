@@ -186,6 +186,8 @@ namespace cme::editor {
 
 			if (ImGui::BeginMenu("Run")) {
 				if (ImGui::MenuItem("Compile + Play")) {
+					auto path = sceneM().activeScene()->getPath();
+					sceneM().saveActiveScene(path);
 					editor().projectBuilder()->build();
 					launchRuntime(sceneM().activeScene()->getPath());
 				}

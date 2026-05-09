@@ -130,12 +130,25 @@ namespace ec
 
 				s.beginScope("data");
 				comp->deserialize(s);
-				this->addComponent(comp);
+				// Durante deserialización, cargar sin inicializar
+				this->addComponent(comp, true);
 				s.endScope();
 
 				s.endScope();
 			}
 			s.endScope(); // Salimos de los componentes
+			
+			// Ahora que todos los componentes están cargados, inicializarlos
+			initAllComponents();
+		}
+
+		/// @brief Inicializa todos los componentes. Usado después de deserialización.
+		void initAllComponents() {
+			for (auto* comp : _components) {
+				if (comp) {
+					comp->initComponent();
+				}
+			}
 		}
 		
 		/// @brief Añadir un componente a la entidad
@@ -183,7 +196,8 @@ namespace ec
 
 		/// @brief Añade un componente ya creado a la entidad, para Deserialización
 		/// @param component El puntero al componente ya instanciado
-		void addComponent(ec::Component* component) {
+		/// @param skipInit Si es true, no llama a initComponent() (útil para deserialización)
+		void addComponent(ec::Component* component, bool skipInit = false) {
 			if (!component) return;
 
 			ec::cmpID_t id = component->getID();
@@ -202,7 +216,11 @@ namespace ec
 			}
 
 			component->setContext(shared_from_this());
-			component->initComponent();
+			
+			// Solo inicializar si no se pidió saltarlo
+			if (!skipInit) {
+				component->initComponent();
+			}
 		}
 
 		/// @brief Quitar un componente de la entidad

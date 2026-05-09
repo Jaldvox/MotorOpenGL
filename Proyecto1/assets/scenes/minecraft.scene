@@ -32,6 +32,7 @@
                             "data": {
                                 "mesh": 3,
                                 "material": {
+                                    "shaderName": "default",
                                     "type": 1,
                                     "uniforms": {
                                         "useAlbedoTex": 1,
@@ -97,6 +98,7 @@
                             "data": {
                                 "mesh": 3,
                                 "material": {
+                                    "shaderName": "default",
                                     "type": 1,
                                     "uniforms": {
                                         "useAlbedoTex": 1,
@@ -131,16 +133,6 @@
                                     ]
                                 }
                             }
-                        },
-                        {
-                            "type": "LuaScript",
-                            "data": {
-                                "scripts": [
-                                    {
-                                        "name": "Rotator"
-                                    }
-                                ]
-                            }
                         }
                     ]
                 },
@@ -172,6 +164,7 @@
                             "data": {
                                 "mesh": 3,
                                 "material": {
+                                    "shaderName": "default",
                                     "type": 1,
                                     "uniforms": {
                                         "useAlbedoTex": 1,
@@ -180,12 +173,6 @@
                                             0.10000000149011612,
                                             0.10000000149011612,
                                             0.10000000149011612
-                                        ],
-                                        "albedo": [
-                                            1.0,
-                                            1.0,
-                                            1.0,
-                                            1.0
                                         ],
                                         "material.diffuse": [
                                             0.800000011920929,
@@ -237,6 +224,7 @@
                             "data": {
                                 "mesh": 3,
                                 "material": {
+                                    "shaderName": "default",
                                     "type": 1,
                                     "uniforms": {
                                         "useAlbedoTex": 1,
@@ -282,7 +270,7 @@
                             "data": {
                                 "position": [
                                     5.0,
-                                    1.0,
+                                    2.0,
                                     -2.0
                                 ],
                                 "scale": [
@@ -302,6 +290,7 @@
                             "data": {
                                 "mesh": 3,
                                 "material": {
+                                    "shaderName": "lightSource",
                                     "type": 0,
                                     "uniforms": {
                                         "lightColor": [
@@ -326,6 +315,16 @@
                                 "constant": 0.06599999964237213,
                                 "linear": 0.11299999803304672,
                                 "quadratic": 0.03700000047683716
+                            }
+                        },
+                        {
+                            "type": "LuaScript",
+                            "data": {
+                                "scripts": [
+                                    {
+                                        "name": "Rotator"
+                                    }
+                                ]
                             }
                         }
                     ]

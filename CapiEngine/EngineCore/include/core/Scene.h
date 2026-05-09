@@ -14,6 +14,8 @@ namespace cme {
 	class Scene : public Serializable
 	{
 	private:
+		sol::state _lua;
+
 		/// @param gameObjectsByLayer vectores de objetos seg�n la layer a la que pertencen
 		/// El vector de gameObjectsByLayer[n] tendr�a todos los objetos pertencientes a la layer n 
 		std::array<std::vector<ec::entity_t>, ec::ent::maxGroupLayer> _gameObjectsByGroup;
@@ -25,7 +27,6 @@ namespace cme {
 
 		GlobalLight* _globalLight = nullptr;
 
-		sol::state _lua;
 	public:
 		Scene(std::string name);
 

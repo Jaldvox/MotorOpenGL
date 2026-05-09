@@ -41,15 +41,14 @@ namespace cme {
 		return nullptr;
 	}
 
-	ScriptInstance& ResourceManager::getScript(std::string& key) {
+	ScriptInstance* ResourceManager::getScript(std::string& key) {
 		auto it = _scripts.find(key);
 		if (it != _scripts.end()) {
-			return it->second;
+			return &it->second;
 		}
 
 		LOG_WARN("Se intento obtener el script '" << key << "', pero no existe, devulviendo default");
-		ScriptInstance s;
-		return s;
+		return nullptr;
 	}
 
 
@@ -87,6 +86,7 @@ namespace cme {
 						if (shaderData.isValid()) {
 							LOG_INFO("Shader cargado correctamente: " << name);
 
+							shaderData.name = name.string();
 							_shadersMap[name.string()] = std::make_unique<Shader>(shaderData);
 							_shaders.push_back(_shadersMap[name.string()].get());
 							_shaderNames.push_back(name.string());

@@ -22,14 +22,9 @@ namespace cme {
         void update();
 
         void clear() {
-            try {
-                instance = sol::lua_nil;
-                startFunc = sol::lua_nil;
-                updateFunc = sol::lua_nil;
-            } catch (const std::exception& e) {
-                // Silenciar excepciones durante limpieza si el state fue destruido
-                LOG_WARN("Exception while clearing script instance: " + std::string(e.what()));
-            }
+            instance = sol::table{};    // reset sin tocar Lua
+            startFunc = sol::function{};
+            updateFunc = sol::function{};
         }
     };
 }

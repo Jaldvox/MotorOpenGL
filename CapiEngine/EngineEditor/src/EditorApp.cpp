@@ -43,7 +43,7 @@ namespace cme::editor {
 	bool EditorApp::init(fs::path enginePath, fs::path projectPath, fs::path projFile) {
 		_projectData = new ProjectFileData(projFile);
 
-		if (!GLApplication::Init(_projectData->projectData().name)) {
+		if (!GLApplication::Init("Capi Engine - " + _projectData->projectData().name)) {
 			LOG_ERROR("Error al inicializar el GLApplication");
 			return false;
 		}

@@ -77,6 +77,10 @@ namespace cme {
 		}
 
 		inline static T* Instance() {
+			if (!_instance) {
+				// Imprime a fichero porque la consola puede no estar disponible
+				std::cout << "Singleton destruido antes de tiempo: " << typeid(T).name() << "\n";
+			}
 			assert(_instance != nullptr);
 			return _instance;
 		}
