@@ -17,13 +17,16 @@ namespace cme {
 		int state = CME_STATE_NORMAL;			// El estado de cuando se tiene que ejecutar (Default CME_STATE_NORMAL)
 		shortcutCall callback;					// La callback para cuando se pulsa
 
+		bool wasTriggered = false;
+		bool holdKey;
+
 		/// @brief Crea un atajo de teclado para el motor
 		/// @param k Las teclas a pulsar
 		/// @param call La callback a ejecutar tras pulsar las teclas
 		/// @param state El estado en el que se ejecuta
 		/// @param eventTrgg El trigger del evento, cuando se realiza la accion, al soltar, pulsar, mantener...
-		Shortcut(std::vector<int> k, shortcutCall call, int state = CME_STATE_NORMAL, int eventTrgg = 1) :
-			keys(k), callback(call), state(state), eventTrigger(eventTrgg) { }
+		Shortcut(std::vector<int> k, shortcutCall call, int state = CME_STATE_NORMAL, bool holdKey = false, int eventTrgg = 1) :
+			keys(k), callback(call), holdKey(holdKey), state(state), eventTrigger(eventTrgg) { }
 
 		/// @brief Si se cumplen las condiciones para ejecutar el atajo
 		/// @param currState El estado actual
@@ -110,6 +113,7 @@ namespace cme {
 		bool isKeyReleased(int key) const;
 		bool isMouseButtonPressed(int button) const;
 
+		int getCurrentState() const { return _currentState; }
 	private:
 		InputManager();
 		bool init();

@@ -69,23 +69,9 @@ namespace cme {
 		shader->setUniform("cameraPos", _cameraPos);
 		shader->setUniform("model", model);
 		shader->setUniform("normalMatrix", normal);
-
-		//if (ent->hasComponent<Light>()) return;
-
-		//auto& lights = Light::getAllLights();
-		//Light* l = nullptr;
-		//if (!lights.empty()) {
-		//	l = lights[0];
-		//	shader->setUniform("hasLight", true);
-		//	shader->setUniform("lightColor", l->color());
-		//	shader->setUniform("lightPos", l->getPosition());
-		//}
-		//else {
-		//	shader->setUniform("hasLight", false);
-		//}
 	}
 
-	void Camera::setCameraLookAt(float xpos, float ypos) {
+	void Camera::setCameraLookAt(float xpos, float ypos, float sensivity) {
 		if (_firstMove) {
 			_lastX = xpos;
 			_lastY = ypos;
@@ -96,9 +82,9 @@ namespace cme {
 		float yoffset = _lastY - ypos; // reversed: y ranges bottom to top
 		_lastX = xpos;
 		_lastY = ypos;
-		const float sensitivity = 0.1f;
-		xoffset *= sensitivity;
-		yoffset *= sensitivity;
+
+		xoffset *= sensivity;
+		yoffset *= sensivity;
 
 		_yaw += xoffset;
 		_pitch += yoffset;

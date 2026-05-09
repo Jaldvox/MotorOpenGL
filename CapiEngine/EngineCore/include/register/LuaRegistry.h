@@ -1,4 +1,6 @@
 #pragma once
+#include <GLFW/glfw3.h>
+
 #include <GLApplication.h>
 #include <component/Transform.h>
 #include <component/MeshRenderer.h>
@@ -46,6 +48,15 @@ namespace cme {
 		input["MOUSE_LEFT"] = 0;
 		input["MOUSE_RIGHT"] = 1;
 		input["MOUSE_MIDDLE"] = 2;
+
+		input["lockCursor"] = [](bool lock) {
+			if (lock) {
+				glfwSetInputMode(gla().window(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			}
+			else {
+				glfwSetInputMode(gla().window(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			}
+		};
 	}
 
 	void registerGLM(sol::state& lua) {
@@ -96,9 +107,12 @@ namespace cme {
 	void registerExtras(sol::state& lua) {
 		lua.new_usertype<Camera>("Camera",
 			"position", sol::property(&Camera::getPosition, &Camera::setPosition),
-			"yaw", sol::readonly_property(&Camera::getYaw),
-			"pitch", sol::readonly_property(&Camera::getPitch),
-			"movementSpeed", sol::property(&Camera::movementSpeed, &Camera::setMovementSpeed)
+			"lookAt", &Camera::setCameraLookAt,
+			"direction", sol::readonly_property(&Camera::getCameraFront),
+			"up", sol::readonly_property(&Camera::getCameraUp),
+			"right", sol::readonly_property([](Camera& cam) {
+				return glm::normalize(glm::cross(cam.getCameraFront(), cam.getCameraUp()));
+			})
 		);
 
 		sol::table scene = lua.create_named_table("Scene");

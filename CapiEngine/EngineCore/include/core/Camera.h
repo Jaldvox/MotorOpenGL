@@ -67,7 +67,8 @@ namespace cme {
 		/// @brief Modifica el yaw y el pitch para que la camara gire, se usa para el movimiento del raton
 		/// @param xOffset El desplazamiento en el eje X del raton en ese frame
 		/// @param yOffset El desplazamiento en el eje Y del raton en ese frame
-		void setCameraLookAt(float xOffset, float yOffset);
+		/// @param sensivity La sensibilidad de la camara
+		void setCameraLookAt(float xOffset, float yOffset, float sensivity = 0.1f);
 
 		/// @brief Cuando se hace resize del viewport
 		/// @param w El nuevo width
@@ -80,6 +81,8 @@ namespace cme {
 
 		float getYaw() const { return _yaw; }
 		float getPitch() const { return _pitch; }
+		void setYaw(float y) { _yaw = y; }
+		float setPitch(float p) { _pitch = p; }
 
 		void setPosition(const glm::vec3& pos) {
 			_cameraPos = pos;

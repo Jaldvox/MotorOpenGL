@@ -32,13 +32,18 @@ function Entity:transform() end
 ---@return Light
 function Entity:light() end
 
--- CAMERA
 ---@class Camera
----@field position Vec3
----@field yaw number
----@field pitch number
----@field movementSpeed number
+---@field position Vec3 Posición actual de la cámara en el mundo (Lectura/Escritura)
+---@field direction Vec3 Vector direccional (Front) normalizado (Solo lectura)
+---@field up Vec3 Vector superior normalizado (Solo lectura)
+---@field right Vec3 Vector derecho normalizado (Solo lectura)
+---@field movementSpeed number Velocidad base de movimiento
 Camera = {}
+
+---@param mouseX number
+---@param mouseY number
+---@param sensivity number
+function Camera:lookAt(mouseX, mouseY, sensivity) end
 
 -- POINTLIGHT
 ---@class PointLight
@@ -56,6 +61,7 @@ PointLight = {}
 Light = {}
 
 -- INPUT
+Input = {}
 ---@param key integer
 ---@return boolean
 function Input.isKeyPressed(key) end
@@ -73,6 +79,10 @@ function Input.mouseX() end
 
 ---@return number
 function Input.mouseY() end
+
+---@param lock boolean
+---@return boolean
+function Input.lockCursor(lock) end
 
 Input.MOUSE_LEFT   = 0
 Input.MOUSE_RIGHT  = 1

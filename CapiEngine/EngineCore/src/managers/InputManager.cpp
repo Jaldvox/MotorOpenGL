@@ -13,7 +13,7 @@
 
 namespace cme {
 	InputManager::InputManager() {
-		
+
 	}
 
 	InputManager::~InputManager() {
@@ -22,6 +22,8 @@ namespace cme {
 	}
 
 	bool Shortcut::isPressed(int currState) {
+		if (keys.empty()) return false;
+
 		bool pressedKeys = true;
 		int i = 0;
 		while (pressedKeys && i < keys.size()) {
@@ -43,8 +45,16 @@ namespace cme {
 		}
 
 		for (auto& s : _shortcuts) {
-			if (s.isPressed(_currentState)) {
-				s.callback();
+			bool currentlyPressed = s.isPressed(_currentState);
+
+			// Si las teclas están pulsadas y NO se había disparado ya
+			if (currentlyPressed && !s.wasTriggered) {
+				s.callback();								// Ejecutamos la acción (solo 1 vez)
+				if (!s.holdKey) s.wasTriggered = true;		// Marcamos que ya se ejecutó
+			}
+			// Si el usuario suelta las teclas (alguna ya no está pulsada)
+			else if (!currentlyPressed) {
+				s.wasTriggered = false;   // Reseteamos para la próxima vez
 			}
 		}
 
@@ -64,11 +74,8 @@ namespace cme {
 	}
 
 	void InputManager::mouseCallback(GLFWwindow* window, double xpos, double ypos) {
-		if (inpM()._currentState == CME_STATE_VIEWPORT_MOVING) {
-			sceneM().activeScene()->getCamera()->setCameraLookAt(xpos, ypos);
-			inpM()._mouseX = static_cast<float>(xpos);
-			inpM()._mouseY = static_cast<float>(ypos);
-		}
+		inpM()._mouseX = static_cast<float>(xpos);
+		inpM()._mouseY = static_cast<float>(ypos);
 	}
 
 	bool InputManager::isKeyPressed(int key) const {

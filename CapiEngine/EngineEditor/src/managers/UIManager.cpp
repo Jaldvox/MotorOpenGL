@@ -163,13 +163,18 @@ namespace cme::editor {
 				if (ImGui::MenuItem("Save Scene", "Ctrl+S")) saveSceneFileContext();
 
 				if (ImGui::MenuItem("Load Scene", "Ctrl+L")) loadSceneFileContext();
+				ImGui::Separator();
+
+				if (ImGui::MenuItem("Reload Scripts", "Ctrl+R")) editor().reloadScripts();
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Edit"))
 			{
 				if (ImGui::MenuItem("Undo", "Ctrl+Z")) {}
 				if (ImGui::MenuItem("Redo", "Ctrl+Y", false, false)) {} // Disabled item
+
 				ImGui::Separator();
+
 				if (ImGui::MenuItem("Cut", "Ctrl+X")) {}
 				if (ImGui::MenuItem("Copy", "Ctrl+C")) {}
 				if (ImGui::MenuItem("Paste", "Ctrl+V")) {}

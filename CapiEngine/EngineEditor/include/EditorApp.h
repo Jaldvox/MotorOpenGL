@@ -42,6 +42,7 @@ namespace cme::editor {
 
 		void createGizmos();
 
+		void reloadScripts();
 		// Metodos de direcciones
 		fs::path getEngineDataPath();
 

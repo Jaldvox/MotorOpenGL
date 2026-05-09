@@ -20,6 +20,7 @@
 #include <managers/ResourceManager.h>
 #include <component/Transform.h>
 #include <component/MeshRenderer.h>
+#include <component/LuaScript.h>
 #include <mesh/QuadMesh.h>
 #include <windows/InspectorWindow.h>
 #include <project/ProjectLoader.h>
@@ -90,6 +91,11 @@ namespace cme::editor {
 			gla().clearRender();
 			gla().processInput();
 
+			if (inpM().getCurrentState() == CME_STATE_VIEWPORT_MOVING) {
+				Camera* cam = sceneM().activeScene()->getCamera();
+				cam->setCameraLookAt(inpM().getMouseX(), inpM().getMouseY());
+			}
+
 			_ui->bind();
 			sceneM().render();
 			_ui->unbind();
@@ -129,63 +135,49 @@ namespace cme::editor {
 		inpM().addShortcut(loadFile);
 
 		// ----- MOVIMIENTO DEL VIEWPORT -----
-		std::vector<int> key = { GLFW_KEY_W };
-		Shortcut cameraMoveW(key, []() {
+		// Usamos { GLFW_KEY_X } directamente en el constructor
+		Shortcut cameraMoveW({ GLFW_KEY_W }, []() {
 			Camera* cam = sceneM().activeScene()->getCamera();
-			glm::vec3 cameraPos = cam->getPosition();
-			glm::vec3 cameraFront = cam->getCameraFront();
+			cam->setPosition(cam->getPosition() + cam->movementSpeed() * cam->getCameraFront() * gla().deltaTime());
+			}, CME_STATE_VIEWPORT_MOVING, true);
 
-			cameraPos += cam->movementSpeed() * cameraFront * gla().deltaTime();
-			cam->setPosition(cameraPos);
-			}, CME_STATE_VIEWPORT_MOVING);
-
-		key = { GLFW_KEY_S };
-		Shortcut cameraMoveS(key, []() {
+		Shortcut cameraMoveS({ GLFW_KEY_S }, []() {
 			Camera* cam = sceneM().activeScene()->getCamera();
-			glm::vec3 cameraPos = cam->getPosition();
-			glm::vec3 cameraFront = cam->getCameraFront();
+			cam->setPosition(cam->getPosition() - cam->movementSpeed() * cam->getCameraFront() * gla().deltaTime());
+			}, CME_STATE_VIEWPORT_MOVING, true);
 
-			cameraPos -= cam->movementSpeed() * cameraFront * gla().deltaTime();
-			cam->setPosition(cameraPos);
-			}, CME_STATE_VIEWPORT_MOVING);
-
-		key = { GLFW_KEY_A };
-		Shortcut cameraMoveA(key, []() {
+		Shortcut cameraMoveA({ GLFW_KEY_A }, []() {
 			Camera* cam = sceneM().activeScene()->getCamera();
-			glm::vec3 cameraPos = cam->getPosition();
-			glm::vec3 cameraFront = cam->getCameraFront();
-			glm::vec3 cameraUp = cam->getCameraUp();
+			glm::vec3 right = glm::normalize(glm::cross(cam->getCameraFront(), cam->getCameraUp()));
+			cam->setPosition(cam->getPosition() - right * cam->movementSpeed() * gla().deltaTime());
+			}, CME_STATE_VIEWPORT_MOVING, true);
 
-			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cam->movementSpeed() * gla().deltaTime();
-			cam->setPosition(cameraPos);
-			}, CME_STATE_VIEWPORT_MOVING);
-
-		key = { GLFW_KEY_D };
-		Shortcut cameraMoveD(key, []() {
+		Shortcut cameraMoveD({ GLFW_KEY_D }, []() {
 			Camera* cam = sceneM().activeScene()->getCamera();
-			glm::vec3 cameraPos = cam->getPosition();
-			glm::vec3 cameraFront = cam->getCameraFront();
-			glm::vec3 cameraUp = cam->getCameraUp();
+			glm::vec3 right = glm::normalize(glm::cross(cam->getCameraFront(), cam->getCameraUp()));
+			cam->setPosition(cam->getPosition() + right * cam->movementSpeed() * gla().deltaTime());
+			}, CME_STATE_VIEWPORT_MOVING, true);
 
-			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cam->movementSpeed() * gla().deltaTime();
-			cam->setPosition(cameraPos);
-			}, CME_STATE_VIEWPORT_MOVING);
-
-		key = { GLFW_KEY_LEFT_SHIFT };
-		Shortcut fastMove(key, []() {
+		Shortcut fastMove({ GLFW_KEY_LEFT_SHIFT }, []() {
 			Camera* cam = sceneM().activeScene()->getCamera();
 			float movspeed = cam->movementSpeed();
 			movspeed = cam->FAST_SPEED;
 			cam->setMovementSpeed(movspeed);
-			}, CME_STATE_VIEWPORT_MOVING);
+			}, CME_STATE_VIEWPORT_MOVING, true);
 
-		key = { GLFW_KEY_LEFT_SHIFT };
-		Shortcut normalMove(key, []() {
+		Shortcut normalMove({ GLFW_KEY_LEFT_SHIFT }, []() {
 			Camera* cam = sceneM().activeScene()->getCamera();
 			float movspeed = cam->movementSpeed();
 			movspeed = cam->SLOW_SPEED;
 			cam->setMovementSpeed(movspeed);
-			}, CME_STATE_VIEWPORT_MOVING, GLFW_RELEASE);
+			}, CME_STATE_VIEWPORT_MOVING, true, GLFW_RELEASE);
+
+		std::vector<int> reloadKeys = { GLFW_KEY_LEFT_CONTROL, GLFW_KEY_R };
+		Shortcut reloadScript(reloadKeys, [this]() {
+			reloadScripts();
+		}, CME_STATE_NORMAL);
+
+		inpM().addShortcut(reloadScript);
 
 		inpM().addShortcut(cameraMoveW);
 		inpM().addShortcut(cameraMoveS);
@@ -230,6 +222,17 @@ namespace cme::editor {
 
 			inpM().addStateChanger(toMoving);
 			inpM().addStateChanger(toNormal);
+	}
+
+	void EditorApp::reloadScripts() {
+		for (int i = 0; i < ec::ent::maxGroupLayer; i++) {
+			for (auto& gObj : sceneM().activeScene()->getSceneObjects()[i]) {
+				if (auto luaScript = gObj->getComponent<LuaScript>()) {
+					luaScript->reloadScripts();
+				}
+			}
+		}
+		LOG_INFO("¡Todos los scripts de la escena han sido recargados!");
 	}
 
 	fs::path EditorApp::getEngineDataPath() {

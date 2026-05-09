@@ -34,6 +34,7 @@ namespace cme {
         std::string getScriptPath(int i) const { return _scripts[i].filepath; }
         std::vector<ScriptInstance>& scripts() { return _scripts; }
 
+        void reloadScripts();
 
         void serialize(JsonSerializer& s) const override;
         void deserialize(JsonSerializer& s)       override;

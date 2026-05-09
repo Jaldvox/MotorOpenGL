@@ -108,4 +108,30 @@ namespace cme {
         }
         s.endScope();
     }
+
+    void LuaScript::reloadScripts() {
+        if (!_lua) {
+            LOG_WARN("No se pueden recargar los scripts: Lua state es nulo");
+            return;
+        }
+
+        for (auto& s : _scripts) {
+            // s.reload() borra la tabla antigua y compila el archivo nuevo
+            if (s.reload(*_lua)) {
+                if (auto entity = _entity.lock()) {
+                    if (auto* tr = entity->getComponent<Transform>())
+                        s.instance["transform"] = tr;
+                    if (auto* lt = entity->getComponent<Light>())
+                        s.instance["light"] = lt;
+
+                    s.instance["entity"] = entity.get();
+                }
+
+                LOG_INFO("Script recargado con éxito: " + s.name);
+            }
+            else {
+                LOG_ERROR("Fallo al recargar el script: " + s.name);
+            }
+        }
+    }
 }
