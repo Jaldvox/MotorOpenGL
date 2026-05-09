@@ -10,13 +10,13 @@
 #include <mesh/CubeMesh.h>
 #include <lighting/GlobalLight.h>
 #include <managers/LightManager.h>
+#include <register/LuaRegistry.h>
 
 namespace cme {
 	Scene::Scene(std::string name) : _name(name) {
 		_cam = new Camera();
 		_globalLight = new GlobalLight();
 		initLua();
-		rscrM().loadAllScripts(_lua);
 	}
 
 	Scene::~Scene() {
@@ -33,7 +33,6 @@ namespace cme {
 			group.clear();
 		}
 
-		rscrM().clearScriptSolObjects();
 
 		_gizmos.clear();
 		delete _cam;
@@ -48,29 +47,7 @@ namespace cme {
 			sol::lib::table
 		);
 
-		// Exponer glm::vec3
-		_lua.new_usertype<glm::vec3>("Vec3",
-			sol::constructors<glm::vec3(float, float, float)>(),
-			"x", &glm::vec3::x,
-			"y", &glm::vec3::y,
-			"z", &glm::vec3::z
-		);
-
-		// Exponer Transform
-		_lua.new_usertype<Transform>("Transform",
-			"position", sol::property(
-				static_cast<const glm::vec3 & (Transform::*)() const>(&Transform::getPosition),
-				static_cast<void (Transform::*)(const glm::vec3&)>(&Transform::setPosition)
-			),
-			"scale", sol::property(
-				static_cast<const glm::vec3 & (Transform::*)() const>(&Transform::getScale),
-				static_cast<void (Transform::*)(const glm::vec3&)>(&Transform::setScale)
-			),
-			"rotate", sol::property(
-				static_cast<const glm::vec3&(Transform::*)() const>(&Transform::getRotation),
-				static_cast<void (Transform::*)(const glm::vec3&)>(&Transform::setRotation)
-			)
-		);
+		registerAPI(_lua);
 	}
 
 	void Scene::refresh() {
@@ -200,4 +177,5 @@ namespace cme {
 		_globalLight->deserialize(s);
 		s.endScope();
 	}
+
 }

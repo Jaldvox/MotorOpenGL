@@ -135,22 +135,14 @@ namespace cme {
 
 	void ResourceManager::loadScript(const fs::path& path) {
 		std::string name = path.stem().string();
-		if (_scripts.count(name)) {
-			LOG_ERROR(std::format("Nombre de script repetido, ignorando el segundo. Path {}", path.string()));
-			return;
-		}
+		if (_scripts.count(name)) return;
 
-		ScriptInstance script;
-		script.filepath = path.string();
-		script.name = name;
+		ScriptInstance scriptTemplate;
+		scriptTemplate.filepath = path.string();
+		scriptTemplate.name = name;
+		// NO llamamos a scriptTemplate.load() aquí. Se queda como un simple contenedor de texto.
 
-		_scripts[name] = script;
+		_scripts[name] = scriptTemplate;
 		_scriptsNames.push_back(name);
-	}
-
-	void ResourceManager::loadAllScripts(sol::state& lua) {
-		for (auto& s : _scripts) {
-			s.second.reload(lua);
-		}
 	}
 }

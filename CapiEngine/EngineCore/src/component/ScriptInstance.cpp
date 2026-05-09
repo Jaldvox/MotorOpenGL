@@ -24,6 +24,7 @@ namespace cme {
             }
 
             sol::table scriptClass = result.get<sol::table>();
+            scriptClass["__index"] = scriptClass;
 
             instance = lua.create_table();
             instance[sol::metatable_key] = scriptClass;
@@ -39,18 +40,28 @@ namespace cme {
     }
 
     void ScriptInstance::start() { 
-        try {
-            if (startFunc.valid()) startFunc(instance);
-        } catch (const std::exception& e) {
-            LOG_ERROR("Error ejecutando Start en script: " + std::string(e.what()));
+        if (startFunc.valid()) {
+            // Ejecutamos y guardamos el resultado
+            sol::protected_function_result result = startFunc(instance);
+
+            // Si hubo un error en Lua, lo imprimimos en la consola de C++
+            if (!result.valid()) {
+                sol::error err = result;
+                std::cerr << "[LUA START ERROR]: " << err.what() << std::endl;
+            }
         }
     }
     
     void ScriptInstance::update() { 
-        try {
-            if (updateFunc.valid()) updateFunc(instance);
-        } catch (const std::exception& e) {
-            LOG_ERROR("Error ejecutando Update en script: " + std::string(e.what()));
+        if (updateFunc.valid()) {
+            // Ejecutamos y guardamos el resultado
+            sol::protected_function_result result = updateFunc(instance);
+
+            // Si hubo un error en Lua, lo imprimimos en la consola de C++
+            if (!result.valid()) {
+                sol::error err = result;
+                std::cerr << "[LUA UPDATE ERROR]: " << err.what() << std::endl;
+            }
         }
     }
 }

@@ -9,8 +9,8 @@ namespace cme {
         std::string name;
 
         sol::table  instance;
-        sol::function startFunc;
-        sol::function updateFunc;
+        sol::protected_function startFunc;
+        sol::protected_function updateFunc;
         //bool _loaded = false;
 
         bool load(sol::state& lua);

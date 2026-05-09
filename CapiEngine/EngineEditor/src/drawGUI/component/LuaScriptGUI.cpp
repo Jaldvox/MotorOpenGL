@@ -10,14 +10,18 @@ namespace cme::editor {
 	void LuaScriptGUI::drawOnInspector() {
 
 		std::vector<ScriptInstance> scriptsToErase;
+		int id = 98;
 		if (ImGui::CollapsingHeader("Lua Script")) {
 			for (const auto& script : _lua->scripts()) {
 				ImGui::Text(script.name.c_str());
 				ImGui::SameLine();
 
+				ImGui::PushID(id);
 				if (ImGui::Button("Erase")) {
 					scriptsToErase.push_back(script);
 				}
+				ImGui::PopID();
+				id++;
 			}
 
 			for (auto& s : scriptsToErase) {

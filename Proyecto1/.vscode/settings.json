@@ -1,0 +1,12 @@
+{
+    "Lua.workspace.library": [
+        ".vscode"
+    ],
+    "Lua.runtime.version": "Lua 5.4",
+    "Lua.diagnostics.globals": [
+        "Vec3",
+        "Input",
+        "Scene",
+        "Key"
+    ]
+}

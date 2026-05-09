@@ -43,6 +43,7 @@ namespace cme {
 		void refresh();
 		void addCubeToScene();
 		void initLua();
+		void BindEngineAPI();
 
 		/// @brief permite a�adir objetos a la escena
 		/// @param grID Grupo al que a�adir al objeto creado

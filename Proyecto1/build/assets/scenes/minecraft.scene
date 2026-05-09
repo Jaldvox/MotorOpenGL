@@ -322,7 +322,7 @@
                             "data": {
                                 "scripts": [
                                     {
-                                        "name": "Rotator"
+                                        "name": "Player"
                                     }
                                 ]
                             }

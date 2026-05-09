@@ -3,20 +3,31 @@
 #include <core/Scene.h>
 #include <managers/ResourceManager.h>
 #include <managers/SceneManager.h>
+#include <component/Light.h>
 
 namespace cme {
     void LuaScript::initComponent() {
         if (auto entity = _entity.lock()) {
             _lua = &entity->getScene()->getLuaState();
+
+            for (auto& s : _scripts) {
+                s.reload(*_lua);
+                // Inyectar referencias útiles en la instancia
+                if (auto* tr = entity->getComponent<Transform>())
+                    s.instance["transform"] = tr;
+                if (auto* lt = entity->getComponent<Light>())
+                    s.instance["light"] = lt;
+                s.instance["entity"] = entity.get();
+            }
         }
     }
 
     void LuaScript::addScript(ScriptInstance& script) {
-        // Asegurar que tenemos una referencia valida al lua state
         if (!_lua) {
             if (auto entity = _entity.lock()) {
                 _lua = &entity->getScene()->getLuaState();
-            } else {
+            }
+            else {
                 auto* l = &sceneM().activeScene()->getLuaState();
                 if (!l) {
                     LOG_ERROR("No se pudo obtener lua state para addScript");
@@ -26,7 +37,24 @@ namespace cme {
             }
         }
 
-        _scripts.push_back(script);
+        // Hacemos una copia "limpia" (solo el nombre y la ruta)
+        ScriptInstance newInstance;
+        newInstance.filepath = script.filepath;
+        newInstance.name = script.name;
+
+        // LO CARGAMOS AQUÍ, en el estado de la escena actual
+        if (newInstance.load(*_lua)) {
+            // Inyectamos dependencias al vuelo si la entidad ya existe
+            if (auto entity = _entity.lock()) {
+                if (auto* tr = entity->getComponent<Transform>())
+                    newInstance.instance["transform"] = tr;
+                if (auto* lt = entity->getComponent<Light>())
+                    newInstance.instance["light"] = lt;
+
+                newInstance.instance["entity"] = entity.get();
+            }
+            _scripts.push_back(newInstance);
+        }
     }
 
     void LuaScript::removeScript(const std::string& path) {
@@ -67,9 +95,15 @@ namespace cme {
         for (size_t i = 0; i < n; i++) {
             s.enterElement(i);
             auto name = s.readString("name");
-            ScriptInstance* script = rscrM().getScript(name);
-            if (script) addScript(*script);
-            else LOG_ERROR("Script no encontrado al deserializar: " + name);
+
+            // Obtenemos solo el "molde" (las rutas) del manager
+            ScriptInstance* scriptTemplate = rscrM().getScript(name);
+            if (scriptTemplate) {
+                addScript(*scriptTemplate); // Ahora addScript se encarga de clonarlo y compilarlo seguro
+            }
+            else {
+                LOG_ERROR("Script no encontrado al deserializar: " + name);
+            }
             s.endScope();
         }
         s.endScope();

@@ -53,11 +53,6 @@ namespace cme {
 		std::vector<std::string> getAllTextureNames();
 		std::vector<std::string> getAllScriptNames();
 
-		void loadAllScripts(sol::state& lua);
-		void clearScriptSolObjects() {
-			for (auto& [key, script] : _scripts)
-				script.clear();
-		}
 	private:
 		ResourceManager() = default;
 
