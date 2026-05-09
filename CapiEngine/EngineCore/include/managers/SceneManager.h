@@ -13,9 +13,10 @@ namespace cme {
 	public:
 		virtual ~SceneManager();
 
+		void start();
 		void update();
 		void render() const;
-		void start();
+		void defaultScene();
 
 		void loadScene(std::string& path);
 		void saveActiveScene(std::string& path) const;

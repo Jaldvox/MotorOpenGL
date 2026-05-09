@@ -36,6 +36,7 @@ namespace cme {
 
 		/// @brief actualiza todos los objetos de la escena
 		void update();
+		void start();
 
 		/// @brief quita todos los objetos que no est�n activos de la escena
 		void refresh();

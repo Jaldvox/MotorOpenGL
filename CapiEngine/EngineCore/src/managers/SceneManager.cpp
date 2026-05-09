@@ -16,6 +16,12 @@ namespace cme {
 		return true;
 	}
 
+	void SceneManager::start() {
+		if (!_currentScene) return;
+
+		_currentScene->start();
+	}
+
 	void SceneManager::update() {
 		if (!_currentScene) return;
 
@@ -28,7 +34,7 @@ namespace cme {
 		_currentScene->render();
 	}
 
-	void SceneManager::start() {
+	void SceneManager::defaultScene() {
 		if (!_currentScene) _currentScene = new Scene("Default");
 	}
 
@@ -40,6 +46,8 @@ namespace cme {
 		_currentScene = new Scene("");
 		_currentScene->setPath(path);
 		_currentScene->deserialize(serializer);
+
+		start();
 	}
 
 	void SceneManager::saveActiveScene(std::string& path) const {

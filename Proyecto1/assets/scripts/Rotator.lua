@@ -10,7 +10,7 @@ end
 function Rotator:Update()
     -- self.transform vendría de haber expuesto Transform a Lua
     -- self.transform:rotate(Vec3(0, self.speed * deltaTime, 0))
-    print("Rotando a velocidad: 1")
+    print("Rotando a velocidad: 1" .. self.speed)
 end
 
 return Rotator

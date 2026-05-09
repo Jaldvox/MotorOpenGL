@@ -98,6 +98,14 @@ namespace cme {
 		}
 	};
 
+	void Scene::start() {
+		for (int i = 0; i < ec::ent::maxGroupLayer; i++) {
+			for (auto& gObj : _gameObjectsByGroup[i]) {
+				if (gObj->active()) gObj->start();
+			}
+		}
+	};
+
 	std::shared_ptr<ec::Entity> Scene::addGameObject(Scene* scene, std::string name, ec::ent::groupID grID) {
 		auto shPtr = std::make_shared<ec::Entity>(grID, scene, name);
 		_gameObjectsByGroup[grID].push_back(shPtr);

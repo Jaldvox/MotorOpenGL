@@ -147,6 +147,7 @@ namespace cme {
 	}
 
 	void GLApplication::start() {
+		sceneM().defaultScene();
 		sceneM().start();
 
 		glEnable(GL_BLEND);

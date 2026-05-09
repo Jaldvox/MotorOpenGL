@@ -80,6 +80,12 @@ namespace ec
 			}
 		}
 
+		inline void start() {
+			for (auto* comp : _components) {
+				if (comp) comp->start();
+			}
+		}
+
 		void render() {
 			for (auto* comp : _renderComponents) {
 				comp->render();
