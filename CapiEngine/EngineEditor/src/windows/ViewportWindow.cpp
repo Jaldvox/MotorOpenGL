@@ -26,7 +26,7 @@ namespace cme::editor {
         // Textura donde se renderiza la imagen
         glGenTextures(1, &_texture);
         glBindTexture(GL_TEXTURE_2D, _texture);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB8_ALPHA8, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _texture, 0);
@@ -44,9 +44,11 @@ namespace cme::editor {
         glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
         glViewport(0, 0, _width, _height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glEnable(GL_FRAMEBUFFER_SRGB);
     }
 
     void ViewportWindow::unbindFBO() const {
+        glDisable(GL_FRAMEBUFFER_SRGB);
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 

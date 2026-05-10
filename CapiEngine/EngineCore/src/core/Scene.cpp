@@ -11,12 +11,15 @@
 #include <lighting/GlobalLight.h>
 #include <managers/LightManager.h>
 #include <register/LuaRegistry.h>
+#include <lighting/Skybox.h>
 
 namespace cme {
 	Scene::Scene(std::string name) : _name(name) {
 		_cam = new Camera();
 		_globalLight = new GlobalLight();
 		initLua();
+
+		_skybox = std::make_shared<Skybox>();
 	}
 
 	Scene::~Scene() {
@@ -78,6 +81,8 @@ namespace cme {
 		for (auto& go : _gizmos) {
 			go->render();
 		}
+
+		_skybox->render(_cam);
 	}
 
 	void Scene::update() {
@@ -138,6 +143,9 @@ namespace cme {
 
 		s.beginScope("globalLight");
 		_globalLight->serialize(s);
+		s.beginScope("skybox");
+		_skybox->serialize(s);
+		s.endScope();
 		s.endScope();
 	}
 
@@ -175,6 +183,9 @@ namespace cme {
 
 		s.beginScope("globalLight");
 		_globalLight->deserialize(s);
+		s.beginScope("skybox");
+		_skybox->deserialize(s);
+		s.endScope();
 		s.endScope();
 	}
 

@@ -62,6 +62,14 @@ namespace cme::editor {
 
 		ImGui::StyleColorsDark();
 		ImGuiStyle& style = ImGui::GetStyle();
+		for (int i = 0; i < ImGuiCol_COUNT; i++) {
+			ImVec4& col = style.Colors[i];
+			col.x = pow(col.x, 2.2f);
+			col.y = pow(col.y, 2.2f);
+			col.z = pow(col.z, 2.2f);
+			// El canal Alpha (w) no se toca
+		}
+
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{
 			style.WindowRounding = 0.0f;

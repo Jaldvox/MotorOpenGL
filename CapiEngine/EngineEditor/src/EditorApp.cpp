@@ -100,6 +100,7 @@ namespace cme::editor {
 			sceneM().render();
 			_ui->unbind();
 
+			glEnable(GL_FRAMEBUFFER_SRGB);
 			_ui->render();
 			sceneM().activeScene()->refresh();
 

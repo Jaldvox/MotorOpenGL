@@ -53,6 +53,7 @@ namespace cme {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_SRGB_CAPABLE, GLFW_TRUE);
 
 		glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 		_window = glfwCreateWindow(_width, _height, std::string(name).c_str(), NULL, NULL);
@@ -148,6 +149,7 @@ namespace cme {
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_FRAMEBUFFER_SRGB);
 	}
 
 	void GLApplication::swapAndTime() {

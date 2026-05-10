@@ -63,8 +63,8 @@ vec3 calcGlobalLight(GlobalLight light, vec3 norm, vec3 viewDir, vec3 baseColor)
     vec3 diffuse = diff * material.diffuse * light.color;
 
     // Specular
-    vec3  reflectDir = reflect(-lightDir, norm);
-    float spec       = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    vec3 halfwayDir = normalize(lightDir + viewDir);
+    float spec = pow(max(dot(norm, halfwayDir), 0.0), 16.0);
     vec3  specular   = material.specular * spec * light.color * step(0.0001, diff);
 
     return (ambient + diffuse + specular) * light.intensity * baseColor;
@@ -83,8 +83,8 @@ vec3 calcPointLight(PointLight light, vec3 norm, vec3 viewDir, vec3 baseColor) {
     vec3  diffuse = diff * material.diffuse * light.color;
 
     // Specular
-    vec3  reflectDir = reflect(-lightDir, norm);
-    float spec       = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    vec3 halfwayDir = normalize(lightDir + viewDir);
+    float spec = pow(max(dot(norm, halfwayDir), 0.0), 16.0);
     vec3  specular   = material.specular * spec * light.color * step(0.0001, diff);
 
     // No sumamos ambient por punto: el global ya la aporta

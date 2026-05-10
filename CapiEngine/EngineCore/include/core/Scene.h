@@ -10,6 +10,7 @@
 namespace cme {
 	class Camera;
 	class GlobalLight;
+	class Skybox;
 
 	class Scene : public Serializable
 	{
@@ -26,7 +27,7 @@ namespace cme {
 		std::string _sceneDataPath = "";
 
 		GlobalLight* _globalLight = nullptr;
-
+		std::shared_ptr<Skybox> _skybox;
 	public:
 		Scene(std::string name);
 
@@ -43,7 +44,6 @@ namespace cme {
 		void refresh();
 		void addCubeToScene();
 		void initLua();
-		void BindEngineAPI();
 
 		/// @brief permite a�adir objetos a la escena
 		/// @param grID Grupo al que a�adir al objeto creado
@@ -64,6 +64,8 @@ namespace cme {
 		std::string getPath() { return _sceneDataPath; }
 
 		sol::state& getLuaState() { return _lua; }
+
+		std::shared_ptr<Skybox>& getSkybox() { return _skybox; }
 
 	private:
 		/// @brief inicializa la escena creando todos los objetos que vayan a haber en la misma

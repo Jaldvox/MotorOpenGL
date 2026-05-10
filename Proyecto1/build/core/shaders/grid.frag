@@ -15,17 +15,17 @@ float gridLine(vec2 coord, float gridSize, float thickness) {
 
 void main() {
     float smallGridSize = 1.0;
-    float bigGridSize   = 10.0;
+    float bigGridSize = 10.0;
 
-    float fadeStart     = 40.0;
-    float fadeEnd       = 120.0;
+    float fadeStart = 40.0;
+    float fadeEnd = 120.0;
 
     // --- Líneas del grid con antialiasing ---
     float tSmall = 0.8; // Grosor relativo líneas pequeñas
-    float tBig   = 1.2; // Grosor relativo líneas grandes
+    float tBig = 1.2; // Grosor relativo líneas grandes
 
     float smallLine = gridLine(WorldPos.xz, smallGridSize, tSmall);
-    float bigLine   = gridLine(WorldPos.xz, bigGridSize, tBig);
+    float bigLine = gridLine(WorldPos.xz, bigGridSize, tBig);
 
     // Transición suave entre grid pequeño y grande según altura cámara
     float lodBlend = smoothstep(20.0, 35.0, cameraPos.y);
@@ -40,28 +40,38 @@ void main() {
     float axisZ = 1.0 - smoothstep(fw.x * 0.5, fw.x * axisThickness, abs(WorldPos.x));
 
     // --- Color base del grid ---
-    vec3 gridColor = vec3(0.45, 0.45, 0.45);
+    vec3 gridColor = vec3(0.2196, 0.2196, 0.2196);
 
     vec3 finalColor = gridColor;
     float finalAlpha = gridAlpha * 0.8;
 
     // Sobreescribir con color del eje si estamos en él
-    if (axisZ > 0.1) {
+    if(axisZ > 0.1) {
         finalColor = mix(finalColor, vec3(0.2, 0.35, 1.0), axisZ); // Eje X → azul (como Unity)
         finalAlpha = max(finalAlpha, axisZ);
     }
-    if (axisX > 0.1) {
+    if(axisX > 0.1) {
         finalColor = mix(finalColor, vec3(1.0, 0.2, 0.25), axisX); // Eje Z → rojo (como Unity)
         finalAlpha = max(finalAlpha, axisX);
     }
 
     // --- Fade por distancia ---
-    float dist = distance(vec2(cameraPos.x, cameraPos.z), WorldPos.xz);
-    float fade = 1.0 - smoothstep(fadeStart, fadeEnd, dist);
+    float dist3D = distance(cameraPos, WorldPos);
+
+    float fadeStart3D = 100.0;
+    float fadeEnd3D = 125.0;
+
+    // Fade adicional en XZ para las líneas pequeñas cerca
+    float distXZ = distance(vec2(cameraPos.x, cameraPos.z), WorldPos.xz);
+    float fadeXZ = 1.0 - smoothstep(fadeStart, fadeEnd, distXZ);
+
+    // Combinamos ambos fades
+    float fade = min(1.0 - smoothstep(fadeStart3D, fadeEnd3D, dist3D), fadeXZ);
 
     finalAlpha *= fade;
 
     FragColor = vec4(finalColor, finalAlpha);
 
-    if (FragColor.a < 0.005) discard;
+    if(FragColor.a < 0.005)
+        discard;
 }
