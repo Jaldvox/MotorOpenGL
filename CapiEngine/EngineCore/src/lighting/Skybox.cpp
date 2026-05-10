@@ -50,6 +50,8 @@ namespace cme {
         glDepthFunc(GL_LEQUAL);
         _shader->use();
 
+        glDisable(GL_CULL_FACE);
+
         // Quitar traslación de la view para que el skybox no se mueva
         glm::mat4 view = glm::mat4(glm::mat3(cam->getViewMat()));
         _shader->setUniform("view", view);
@@ -60,6 +62,8 @@ namespace cme {
         glBindVertexArray(_VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
+
+        glEnable(GL_CULL_FACE);
 
         glDepthFunc(GL_LESS);
     }

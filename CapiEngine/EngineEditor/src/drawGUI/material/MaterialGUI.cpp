@@ -30,10 +30,16 @@ namespace cme::editor {
 
 				if constexpr (std::is_same_v<T, float>)
 					ImGui::SliderFloat(name.c_str(), &std::get<float>(prop.value), 0.f, 256.f);
+
+				else if constexpr (std::is_same_v<T, glm::vec2>)
+					ImGui::DragFloat2(name.c_str(), glm::value_ptr(std::get<glm::vec2>(prop.value)), 0.05f);
+
 				else if constexpr (std::is_same_v<T, glm::vec3>)
 					ImGui::ColorEdit3(name.c_str(), glm::value_ptr(std::get<glm::vec3>(prop.value)));
+
 				else if constexpr (std::is_same_v<T, glm::vec4>)
 					ImGui::ColorEdit4(name.c_str(), glm::value_ptr(std::get<glm::vec4>(prop.value)));
+
 				else if constexpr (std::is_same_v<T, bool>)
 					ImGui::Checkbox(name.c_str(), &std::get<bool>(prop.value));
 				}, prop.value);

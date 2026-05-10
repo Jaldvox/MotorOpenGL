@@ -102,7 +102,14 @@ namespace cme {
 				break;
 			case GL_INT:        _properties[name] = MaterialProperty{ 0 };               break;
 			case GL_BOOL:       _properties[name] = MaterialProperty{ false };           break;
-			case GL_FLOAT_VEC2: _properties[name] = MaterialProperty{ glm::vec2(1.0f) }; break;
+			case GL_FLOAT_VEC2:
+				if (name.find("Offset") != std::string::npos) {
+					_properties[name] = MaterialProperty{ glm::vec2(0.0f) }; // El offset empieza en 0
+				}
+				else {
+					_properties[name] = MaterialProperty{ glm::vec2(1.0f) }; // El tiling/escala empieza en 1
+				}
+				break;
 			case GL_FLOAT_VEC3:
 				if (name == "material.ambient")  _properties[name] = MaterialProperty{ glm::vec3(0.1f) };
 				else if (name == "material.diffuse")  _properties[name] = MaterialProperty{ glm::vec3(0.8f) };

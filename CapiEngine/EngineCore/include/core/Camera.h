@@ -33,7 +33,7 @@ namespace cme {
 		/// @brief Distancia a partir de donde se empiezan a ver las cosas
 		float _nearDistance = 0.1f;
 		/// @brief Distancia donde se dejan de ver las cosas
-		float _farDistance = 100.0f;
+		float _farDistance = 1000.0f;
 
 		float _yaw = -132.0f;	// Respecto al eje y (desde arriba)
 		float _pitch = -37.0f;	// Respecto al eje x (desde un lado)

@@ -45,6 +45,9 @@ uniform int         numPointLights;
 
 uniform Material    material;
 uniform sampler2D   albedoMap;
+uniform vec2        albedoTiling;
+uniform vec2        albedoOffset;
+
 uniform bool        useAlbedoTex;
 uniform vec3        cameraPos;
 
@@ -95,7 +98,9 @@ vec3 calcPointLight(PointLight light, vec3 norm, vec3 viewDir, vec3 baseColor) {
 // Main
 // -------------------------------------------------------
 void main() {
-    vec4 baseColor = useAlbedoTex ? texture(albedoMap, vTexCoords) : vec4(material.diffuse, 1);
+    vec2 finalUV = (vTexCoords * albedoTiling) + albedoOffset;
+
+    vec4 baseColor = useAlbedoTex ? texture(albedoMap, finalUV) : vec4(material.diffuse, 1);
     vec3 norm      = normalize(Normal);
     vec3 viewDir   = normalize(cameraPos - FragPos);
 
