@@ -34,6 +34,12 @@ namespace cme {
 		_currentScene->render();
 	}
 
+	void SceneManager::renderShadows() {
+		if (!_currentScene) return;
+
+		_currentScene->renderShadows();
+	}
+
 	void SceneManager::defaultScene() {
 		if (!_currentScene) _currentScene = new Scene("Default");
 	}

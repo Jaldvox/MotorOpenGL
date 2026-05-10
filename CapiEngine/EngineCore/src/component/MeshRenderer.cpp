@@ -31,6 +31,13 @@ namespace cme {
 		_mesh->render();
 	}
 
+	void MeshRenderer::renderDepth(Shader* depthShader) const {
+		if (!_mesh) return;
+		// Solo necesitamos la model matrix, nada de cámara ni material
+		depthShader->setUniform("model", _tr->getModelMatrix());
+		_mesh->renderDepth(depthShader);
+	}
+
 	void MeshRenderer::initComponent() {
 		if (auto entitySp = _entity.lock()) {
 			_cam = entitySp->getScene()->getCamera();

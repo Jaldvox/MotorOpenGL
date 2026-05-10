@@ -127,6 +127,8 @@ namespace cme {
 		while (!glfwWindowShouldClose(_window))
 		{
 			update();
+			sceneM().renderShadows();
+
 			render();
 			sceneM().activeScene()->refresh();
 			swapAndTime();

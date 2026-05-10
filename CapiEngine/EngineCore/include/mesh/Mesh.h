@@ -48,6 +48,7 @@ namespace cme {
 		virtual void generateMesh() = 0;
 		/// @brief Renderiza el mesh
 		virtual void render() const;
+		void renderDepth(Shader* depthShader) const;
 
 		/// @brief Cambia el shader que utiliza la mesh
 		/// @param shader El shader a poner

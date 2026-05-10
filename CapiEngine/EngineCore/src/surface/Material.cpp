@@ -12,11 +12,13 @@
 
 #include <serialize/JsonSerializer.h>
 #include <managers/LightManager.h>
+#include <managers/SceneManager.h>
+#include <core/Scene.h>
 
 namespace cme {
 	const std::unordered_set<std::string> Material::CAMERA_UNIFORMS = {
 			"projection", "modelView", "model", "normalMatrix",
-			"cameraPos", "numPointLights"
+			"cameraPos", "numPointLights", "shadowMap"
 	};
 
 	const std::vector<std::string> Material::CAMERA_UNIFORMS_PREFIX = {
@@ -71,6 +73,13 @@ namespace cme {
 				++slot;
 			}
 		}
+
+		_shader->setUniform("lightSpaceMatrix", sceneM().activeScene()->lightMatrix());
+
+		glActiveTexture(GL_TEXTURE10);
+		glBindTexture(GL_TEXTURE_2D, sceneM().activeScene()->shadowMapTexture());
+
+		_shader->setUniform("shadowMap", 10);
 	}
 
 	void Material::setShader(Shader* newShader) {

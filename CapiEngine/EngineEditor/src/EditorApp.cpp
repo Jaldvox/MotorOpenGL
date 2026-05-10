@@ -96,6 +96,8 @@ namespace cme::editor {
 				cam->setCameraLookAt(inpM().getMouseX(), inpM().getMouseY());
 			}
 
+			sceneM().renderShadows();
+
 			_ui->bind();
 			sceneM().render();
 			_ui->unbind();

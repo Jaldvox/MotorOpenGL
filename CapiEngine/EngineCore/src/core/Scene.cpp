@@ -20,6 +20,12 @@ namespace cme {
 		initLua();
 
 		_skybox = std::make_shared<Skybox>();
+
+		_shadowShader = rscrM().getShader("shadowMap");
+		_shadowMap = std::make_unique<ShadowMap>(); // ← faltaba
+		_shadowMap->init();
+
+		_lightMatrix = calcLightSpaceMatrix();
 	}
 
 	Scene::~Scene() {
@@ -100,6 +106,53 @@ namespace cme {
 			}
 		}
 	};
+
+	void Scene::renderShadows() {
+		_lightMatrix = calcLightSpaceMatrix();
+
+		glViewport(0, 0, _shadowMap->width, _shadowMap->height);
+		glBindFramebuffer(GL_FRAMEBUFFER, _shadowMap->fbo);
+		glClear(GL_DEPTH_BUFFER_BIT);
+		glCullFace(GL_FRONT); // evita "peter panning" (sombras desplazadas)
+
+		_shadowShader->use();
+		_shadowShader->setUniform("lightSpaceMatrix", _lightMatrix);
+
+		for (int i = 0; i < ec::ent::maxGroupLayer; i++) {
+			for (auto& gObj : _gameObjectsByGroup[i]) {
+				if (!gObj->active()) continue; 
+				auto mr = gObj->getComponent<MeshRenderer>();
+				if (!mr) continue;
+
+				mr->renderDepth(_shadowShader); // solo geometría, sin material
+			}
+		}
+
+		glCullFace(GL_BACK);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0, 0, gla().width(), gla().height());
+	}
+
+	glm::mat4 Scene::calcLightSpaceMatrix() {
+		float size = 20.f;
+		float near_plane = 1.0f;
+		float far_plane = 100.0f;
+
+		glm::mat4 lightProj = glm::ortho(-size, size, -size, size, near_plane, far_plane);
+
+		glm::vec3 lightDir = glm::normalize(_globalLight->direction());
+		glm::vec3 lightPos = -lightDir * 30.f;
+
+		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+		// Si la luz mira casi perfectamente hacia abajo o arriba en Y
+		if (std::abs(lightDir.x) < 0.001f && std::abs(lightDir.z) < 0.001f) {
+			up = glm::vec3(0.0f, 0.0f, 1.0f); // Cambiamos el vector Up para evitar el colapso
+		}
+
+		glm::mat4 lightView = glm::lookAt(lightPos, glm::vec3(0.f), up);
+		return lightProj * lightView;
+	}
+
 
 	std::shared_ptr<ec::Entity> Scene::addGameObject(Scene* scene, std::string name, ec::ent::groupID grID) {
 		auto shPtr = std::make_shared<ec::Entity>(grID, scene, name);

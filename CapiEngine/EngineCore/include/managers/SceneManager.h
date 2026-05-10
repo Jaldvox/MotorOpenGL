@@ -17,6 +17,7 @@ namespace cme {
 		void start();
 		void update();
 		void render() const;
+		void renderShadows();
 		void defaultScene();
 
 		void loadScene(std::string& path);

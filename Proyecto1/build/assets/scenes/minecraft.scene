@@ -39,14 +39,14 @@
                                             0.0,
                                             0.0
                                         ],
+                                        "albedoTiling": [
+                                            1.0,
+                                            1.0
+                                        ],
                                         "material.specular": [
                                             0.5,
                                             0.5,
                                             0.5
-                                        ],
-                                        "albedoTiling": [
-                                            1.0,
-                                            1.0
                                         ],
                                         "material.shininess": 32.0,
                                         "useAlbedoTex": 1,
@@ -113,14 +113,14 @@
                                             0.0,
                                             0.0
                                         ],
+                                        "albedoTiling": [
+                                            1.0,
+                                            1.0
+                                        ],
                                         "material.specular": [
                                             0.5,
                                             0.5,
                                             0.5
-                                        ],
-                                        "albedoTiling": [
-                                            1.0,
-                                            1.0
                                         ],
                                         "material.shininess": 32.0,
                                         "useAlbedoTex": 1,
@@ -265,14 +265,14 @@
                                             0.0,
                                             0.0
                                         ],
+                                        "albedoTiling": [
+                                            1.0,
+                                            1.0
+                                        ],
                                         "material.specular": [
                                             0.5,
                                             0.5,
                                             0.5
-                                        ],
-                                        "albedoTiling": [
-                                            1.0,
-                                            1.0
                                         ],
                                         "material.shininess": 32.0,
                                         "useAlbedoTex": 1,

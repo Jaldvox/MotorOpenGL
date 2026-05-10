@@ -6,11 +6,14 @@
 #include <string>
 #include <memory>
 #include <sol/sol.hpp>
+#include <glm/mat4x4.hpp>
+#include <lighting/ShadowMap.h>
 
 namespace cme {
 	class Camera;
 	class GlobalLight;
 	class Skybox;
+	class Shader;
 
 	class Scene : public Serializable
 	{
@@ -28,6 +31,11 @@ namespace cme {
 
 		GlobalLight* _globalLight = nullptr;
 		std::shared_ptr<Skybox> _skybox;
+
+		std::unique_ptr<ShadowMap> _shadowMap;
+		Shader* _shadowShader = nullptr;
+		glm::mat4 _lightMatrix;
+
 	public:
 		Scene(std::string name);
 
@@ -35,6 +43,7 @@ namespace cme {
 
 		/// @brief renderiza todos los objetos de la escena seg�n la layer y posteriormente renderiza la UI
 		void render() const;
+		void renderShadows();
 
 		/// @brief actualiza todos los objetos de la escena
 		void update();
@@ -67,8 +76,13 @@ namespace cme {
 
 		std::shared_ptr<Skybox>& getSkybox() { return _skybox; }
 
+		GLuint shadowMapTexture() { return _shadowMap->depthTex; }
+		glm::mat4 lightMatrix() { return _lightMatrix; }
+
 	private:
 		/// @brief inicializa la escena creando todos los objetos que vayan a haber en la misma
 		virtual void init() {};
+
+		glm::mat4 calcLightSpaceMatrix();
 	};
 }

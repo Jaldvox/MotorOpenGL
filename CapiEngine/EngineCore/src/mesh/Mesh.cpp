@@ -110,6 +110,17 @@ namespace cme {
         glBindVertexArray(0);
     }
 
+    void Mesh::renderDepth(Shader* depthShader) const {
+        depthShader->use();
+
+        glBindVertexArray(_VAO);
+        if (!_indices.empty())
+            glDrawElements(mPrimitive, _indices.size() * 3, GL_UNSIGNED_INT, 0);
+        else
+            glDrawArrays(mPrimitive, 0, _vertices.size());
+        glBindVertexArray(0);
+    }
+
     void Mesh::getLocalAABB(glm::vec3& outMin, glm::vec3& outMax) const {
         if (_vertices.empty()) {
             outMax = glm::vec3(0.0f);

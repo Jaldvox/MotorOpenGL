@@ -98,6 +98,9 @@ namespace cme {
 		glm::mat4 getViewMat() { return _view; }
 		glm::mat4 getProjectionMat() { return _projection; }
 
+		float nearPlane() { return _nearDistance; }
+		float farPlane() { return _farDistance; }
+
 	private:
 		/// @brief Manda a la gpu la matriz de proyeccion
 		/// @param shader El shader objetivo a modificar

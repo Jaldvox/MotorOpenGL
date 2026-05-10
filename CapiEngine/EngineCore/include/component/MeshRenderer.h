@@ -25,6 +25,7 @@ namespace cme {
 		MeshRenderer(Mesh* mesh);
 
 		void render() const override;
+		void renderDepth(Shader* depthShader) const;
 
 		void initComponent() override;
 
