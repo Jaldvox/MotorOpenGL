@@ -133,6 +133,16 @@
                                     ]
                                 }
                             }
+                        },
+                        {
+                            "type": "LuaScript",
+                            "data": {
+                                "scripts": [
+                                    {
+                                        "name": "Rotator"
+                                    }
+                                ]
+                            }
                         }
                     ]
                 },
