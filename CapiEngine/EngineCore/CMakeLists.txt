@@ -41,6 +41,7 @@ target_include_directories(EngineCore PUBLIC
     ../vendor/glfw/include
     ../vendor/sol/include
     ../vendor/lua/src
+    ../vendor/assimp/include
 )
 
 target_compile_definitions(EngineCore PUBLIC 
@@ -50,6 +51,7 @@ target_compile_definitions(EngineCore PUBLIC
 
 target_link_libraries(EngineCore PUBLIC 
     "${CMAKE_SOURCE_DIR}/vendor/glfw/lib/glfw3dll.lib" 
+    "${CMAKE_CURRENT_SOURCE_DIR}/../vendor/assimp/lib/assimp-vc145-mt.lib"
     lua_static                  # Enlazamos la librería que acabamos de compilar arriba
 )
 
@@ -58,4 +60,10 @@ add_custom_command(TARGET EngineCore POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${CMAKE_SOURCE_DIR}/vendor/glfw/bin/glfw3.dll"
         "$<TARGET_FILE_DIR:EngineEditor>"
+)
+
+add_custom_command(TARGET EngineCore POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    "${CMAKE_SOURCE_DIR}/vendor/assimp/bin/assimp-vc145-mt.dll"
+    "$<TARGET_FILE_DIR:EngineEditor>"
 )
