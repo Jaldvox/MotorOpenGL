@@ -1,0 +1,14 @@
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/CMakeFiles/PACKAGE.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/CMakeFiles/INSTALL.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/lua_static.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/EngineCore.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/PACKAGE.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/INSTALL.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/CMakeFiles/EngineEditor.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/CMakeFiles/PACKAGE.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/CMakeFiles/INSTALL.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/Runtime/CMakeFiles/EngineRuntime.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/Runtime/CMakeFiles/PACKAGE.dir
+C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/Runtime/CMakeFiles/INSTALL.dir

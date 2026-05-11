@@ -4,6 +4,7 @@
 #include <surface/Shader.h>
 #include <imgui.h>
 #include <managers/ResourceManager.h>
+#include <drawGUI/material/MaterialGUI.h>
 
 namespace cme::editor {
 	ModelRendererGUI::ModelRendererGUI(cme::ModelRenderer* meshRenderer) : _meshRenderer(meshRenderer) {}
@@ -47,9 +48,9 @@ namespace cme::editor {
 			std::string label = "Sub-mesh " + std::to_string(idx++);
 			if (ImGui::TreeNode(label.c_str())) {
 				if (sub.material) {
-					Shader* sh = sub.material->getShader();
-					ImGui::Text("Shader: %s", sh ? sh->getName().c_str() : "(null)");
-					ImGui::Text("Texturas: %zu", sub.ownedTextures.size());
+					Material* m = sub.material.get();
+					MaterialGUI mGUI(m);
+					mGUI.drawOnInspector();
 				}
 				ImGui::TreePop();
 			}

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\Runtime\src\ResourcesLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\Runtime\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\Runtime\include\ResourcesLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\Runtime\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F725B498-ED7D-3FC4-B01A-1125B22D621D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{996C4F5D-D7FB-3EFC-A9D1-67E9ABF98214}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

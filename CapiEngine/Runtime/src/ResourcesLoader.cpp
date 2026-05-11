@@ -8,7 +8,8 @@ namespace cme::runtime {
 		// load project resources
 		loadFilesRecursive(path / "assets");
 		loadFilesRecursive(path / "core");
-		
+		rscrM().loadModels();
+
 		return true;
 	}
 
@@ -46,6 +47,9 @@ namespace cme::runtime {
 			LOG_INFO(std::format("Añadiendo Script: {}", file.filename().string()));
 			rscrM().loadResource<ScriptInstance>(file);
 			break;
+		case ResourceType::Model:
+			rscrM().loadResource<Model>(file);
+			break;
 
 		default:
 			break;
@@ -59,6 +63,9 @@ namespace cme::runtime {
 
 			if (extension == ".lua") {
 				return ResourceType::Script;
+			}
+			else if (extension == ".fbx") {
+				return ResourceType::Model;
 			}
 			else if (std::count(SHADER_EXTENSIONS.begin(), SHADER_EXTENSIONS.end(), extension)) {
 				return ResourceType::Shader;

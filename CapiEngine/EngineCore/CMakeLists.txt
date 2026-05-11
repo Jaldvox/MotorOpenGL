@@ -57,13 +57,15 @@ target_link_libraries(EngineCore PUBLIC
 
 # Copiar la DLL al lado del ejecutable automáticamente
 add_custom_command(TARGET EngineCore POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:EngineEditor>"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${CMAKE_SOURCE_DIR}/vendor/glfw/bin/glfw3.dll"
-        "$<TARGET_FILE_DIR:EngineEditor>"
+        "$<TARGET_FILE_DIR:EngineEditor>/glfw3.dll"   # ruta completa
 )
 
 add_custom_command(TARGET EngineCore POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:EngineEditor>"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    "${CMAKE_SOURCE_DIR}/vendor/assimp/bin/assimp-vc145-mt.dll"
-    "$<TARGET_FILE_DIR:EngineEditor>"
+        "${CMAKE_SOURCE_DIR}/vendor/assimp/bin/assimp-vc145-mt.dll"
+        "$<TARGET_FILE_DIR:EngineEditor>/assimp-vc145-mt.dll"   # ruta completa
 )

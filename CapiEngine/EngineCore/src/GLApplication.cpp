@@ -1,5 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "stb_image.h"
 
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
@@ -63,6 +64,20 @@ namespace cme {
 			LOG_ERROR("Failed to create GLFW window");
 			return false;
 		}
+
+		GLFWimage images[1];
+		int channels;
+		// Asegúrate de poner la ruta a tu imagen original en PNG
+		images[0].pixels = stbi_load("resources/capi.png", &images[0].width, &images[0].height, &channels, 4); // El 4 fuerza que se cargue con canal Alpha (RGBA)
+
+		if (images[0].pixels) {
+			glfwSetWindowIcon(_window, 1, images);
+			stbi_image_free(images[0].pixels); // Liberamos la memoria de la imagen una vez subida a GLFW
+		}
+		else {
+			LOG_WARN("GLApplication: No se pudo cargar el icono de la ventana desde assets/icono.png");
+		}
+
 		int w = 0, h = 0;
 		glfwGetWindowSize(_window, &w, &h);
 		_width = w;

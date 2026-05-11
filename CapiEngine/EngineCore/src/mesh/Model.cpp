@@ -5,7 +5,6 @@
 #include <core/Camera.h>
 #include <utils/logger.h>
 
-#include <algorithm>
 #include <limits>
 
 namespace cme {
@@ -18,34 +17,36 @@ namespace cme {
             LOG_WARN("Model::load — ningún sub-mesh cargado para: " + path);
         }
         else {
-            LOG_INFO(std::format("Model::load — {} sub-meshes cargados: {}", _subMeshes.size(), path));
+            LOG_INFO(std::format("Model::load — {} sub-meshes: {}", _subMeshes.size(), path));
         }
     }
 
-    void Model::render(const glm::mat4& modelMatrix,
-                       Camera*          cam,
-                       ec::entity_t     ent) const
-    {
-        if (_subMeshes.empty()) return;
-
+    void Model::render(const glm::mat4& modelMatrix, Camera* cam, ec::entity_t ent) const {
         for (const auto& sub : _subMeshes) {
             if (!sub.mesh || !sub.material) continue;
 
-            ModelMesh* mesh = sub.mesh.get();
+            // Transform final = transform del entity × transform del nodo Assimp
+            glm::mat4 finalModel = modelMatrix * sub.localTransform;
 
-            // El material aplica su shader y sube luces, texturas y propiedades.
             sub.material->apply();
 
-            // Subir matrices de cámara al shader que el material ya activó.
             Shader* shader = sub.material->getShader();
+            if (!shader) continue;
 
             cam->uploadProjectionToGPU(shader);
 
-            mesh->setModelMatrix(modelMatrix);
-            cam->uploadViewToGPU(shader, modelMatrix, mesh->normalMatrix(), ent);
+            sub.mesh->setModelMatrix(finalModel);
+            cam->uploadViewToGPU(shader, finalModel, sub.mesh->normalMatrix(), ent);
 
-            // Draw call — ModelMesh::render() no toca el shader, solo glDrawElements.
-            mesh->render();
+            sub.mesh->render();
+        }
+    }
+
+    void Model::renderDepth(Shader* depthShader) const {
+        for (const auto& sub : _subMeshes) {
+            if (!sub.mesh || !sub.material) continue;
+
+            sub.mesh->renderDepth(depthShader);
         }
     }
 
@@ -62,4 +63,4 @@ namespace cme {
         }
     }
 
-} // namespace cme
+} 

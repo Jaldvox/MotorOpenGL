@@ -35,6 +35,8 @@ namespace cme {
                     Camera*          cam,
                     ec::entity_t     ent) const;
 
+        void renderDepth(Shader* depthShader) const;
+
         bool isLoaded() const { return !_subMeshes.empty(); }
         const std::string& path() const { return _path; }
         const std::string& name() const { return _name; }

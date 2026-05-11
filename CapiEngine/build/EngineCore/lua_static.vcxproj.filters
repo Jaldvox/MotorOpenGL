@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lapi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lauxlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lbaselib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lcode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lcorolib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lctype.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\ldblib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\ldebug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\ldo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\ldump.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lfunc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lgc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\linit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\liolib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\llex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lmathlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lmem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\loadlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lobject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lopcodes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\loslib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lparser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lstate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lstring.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lstrlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\ltable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\ltablib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\ltm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lundump.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lutf8lib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lvm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src\lzio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{996C4F5D-D7FB-3EFC-A9D1-67E9ABF98214}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -25,6 +25,7 @@ file(GLOB_RECURSE EDITOR_SOURCES
 add_executable(EngineEditor 
     ${EDITOR_SOURCES} 
     ${IMGUI_SOURCES}
+    ../recursos.rc
 )
 
 set_target_properties(EngineEditor PROPERTIES
@@ -60,7 +61,8 @@ add_custom_command(TARGET EngineEditor POST_BUILD
 )
 
 add_custom_command(TARGET EngineEditor POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:EngineRuntime>"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${CMAKE_SOURCE_DIR}/vendor/glfw/bin/glfw3.dll"
-        "$<TARGET_FILE_DIR:EngineRuntime>"
+        "$<TARGET_FILE_DIR:EngineRuntime>/glfw3.dll"
 )

@@ -16,9 +16,9 @@ namespace cme {
     ///        Equivalente a MeshRenderer pero para modelos multi-submesh.
     class ModelRenderer : public ec::Component, public ec::RenderComponent {
     private:
-        Model*      _model = nullptr;   // owned
-        Camera*     _cam   = nullptr;   // borrowed (de la escena)
-        Transform*  _tr    = nullptr;   // borrowed (del mismo entity)
+        Model*      _model = nullptr;
+        Camera*     _cam   = nullptr;
+        Transform*  _tr    = nullptr;
 
         std::string _modelPath;         // para serialización y recarga
 
@@ -26,10 +26,11 @@ namespace cme {
         __CMPID_DECL__(ec::comp::MODEL_RENDERER)  // necesita registrarse en el enum comp
 
         ModelRenderer() = default;
-        ~ModelRenderer();
+        ~ModelRenderer() = default;
 
         void initComponent() override;
         void render() const override;
+        void renderDepth(Shader* depthShader);
 
         void serialize(JsonSerializer& s) const override;
         void deserialize(JsonSerializer& s) override;

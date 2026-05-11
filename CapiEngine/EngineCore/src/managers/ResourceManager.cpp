@@ -147,20 +147,26 @@ namespace cme {
 		_scriptsNames.push_back(name);
 	}
 
-	Model* ResourceManager::loadModel(const fs::path& file, const std::string& shaderName) {
+	void ResourceManager::loadModel(const fs::path& file, const std::string& shaderName) {
 		std::string key = file.stem().string();
 
 		auto it = _modelsMap.find(key);
-		if (it != _modelsMap.end())
-			return it->second.get();   // ya cargado
+		if (it != _modelsMap.end()) return;
 
-		auto model = std::make_unique<Model>(key);
-		model->load(file.string(), shaderName);
+		_modelLaterLoad.push_back({file, shaderName});
+	}
 
-		Model* raw = model.get();
-		_modelsMap[key] = std::move(model);
-		_modelNames.push_back(key);
-		return raw;
+	void ResourceManager::loadModels() {
+		for (auto& m : _modelLaterLoad) {
+			std::string key = m.file.stem().string();
+
+			auto model = std::make_unique<Model>(key);
+			model->load(m.file.string(), m.shaderName);
+
+			Model* raw = model.get();
+			_modelsMap[key] = std::move(model);
+			_modelNames.push_back(key);
+		}
 	}
 
 	Model* ResourceManager::getModel(const std::string& key) {

@@ -414,13 +414,13 @@
                             "data": {
                                 "position": [
                                     0.0,
-                                    3.0,
-                                    0.0
+                                    0.5,
+                                    -4.0
                                 ],
                                 "scale": [
-                                    1.0,
-                                    1.0,
-                                    1.0
+                                    0.009999999776482582,
+                                    0.009999999776482582,
+                                    0.009999999776482582
                                 ],
                                 "rotation": [
                                     0.0,
@@ -432,7 +432,94 @@
                         {
                             "type": "ModelRenderer",
                             "data": {
-                                "modelPath": ""
+                                "modelName": "Tree",
+                                "subMeshMaterials": [
+                                    {
+                                        "shaderName": "default",
+                                        "type": 1,
+                                        "uniforms": {
+                                            "albedoOffset": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "albedoColor": [
+                                                0.0,
+                                                0.8000074625015259,
+                                                0.009071821346879005
+                                            ],
+                                            "material.specular": [
+                                                0.5,
+                                                0.5,
+                                                0.5
+                                            ],
+                                            "albedoTiling": [
+                                                1.0,
+                                                1.0
+                                            ],
+                                            "useAlbedoTex": 0,
+                                            "material.ambient": [
+                                                0.10000000149011612,
+                                                0.10000000149011612,
+                                                0.10000000149011612
+                                            ],
+                                            "material.diffuse": [
+                                                0.06757014989852905,
+                                                0.37254899740219116,
+                                                0.07654006034135818
+                                            ]
+                                        },
+                                        "textures": []
+                                    },
+                                    {
+                                        "shaderName": "default",
+                                        "type": 1,
+                                        "uniforms": {
+                                            "albedoOffset": [
+                                                0.0,
+                                                0.0
+                                            ],
+                                            "albedoColor": [
+                                                0.800000011920929,
+                                                0.800000011920929,
+                                                0.800000011920929
+                                            ],
+                                            "material.specular": [
+                                                0.5,
+                                                0.5,
+                                                0.5
+                                            ],
+                                            "albedoTiling": [
+                                                1.0,
+                                                1.0
+                                            ],
+                                            "useAlbedoTex": 1,
+                                            "material.ambient": [
+                                                0.10000000149011612,
+                                                0.10000000149011612,
+                                                0.10000000149011612
+                                            ],
+                                            "material.diffuse": [
+                                                0.800000011920929,
+                                                0.800000011920929,
+                                                0.800000011920929
+                                            ]
+                                        },
+                                        "textures": [
+                                            {
+                                                "uniformName": "albedoMap",
+                                                "textureName": "bark_02_color_2k"
+                                            },
+                                            {
+                                                "uniformName": "normalMap",
+                                                "textureName": "bark_02_normal_gl_2k"
+                                            },
+                                            {
+                                                "uniformName": "roughnessMap",
+                                                "textureName": "bark_02_roughness_2k"
+                                            }
+                                        ]
+                                    }
+                                ]
                             }
                         }
                     ]
@@ -451,9 +538,9 @@
             0.9607843160629272
         ],
         "lightDir": [
-            0.7750656008720398,
-            -0.37945619225502014,
-            0.5052588582038879
+            0.6417831182479858,
+            -0.5343523025512695,
+            0.550074577331543
         ],
         "lightIntensity": 1.0,
         "skybox": {

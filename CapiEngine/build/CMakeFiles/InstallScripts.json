@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/cmake_install.cmake",
+		"C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/cmake_install.cmake",
+		"C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/cmake_install.cmake",
+		"C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/Runtime/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

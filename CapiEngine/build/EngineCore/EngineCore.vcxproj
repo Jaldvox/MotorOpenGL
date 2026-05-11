@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5B9106B2-6DD6-38D0-8864-B1671AB347AB}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>EngineCore</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">EngineCore.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">EngineCore</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">EngineCore.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">EngineCore</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/glfw/bin/glfw3.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Debug/glfw3.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/assimp/bin/assimp-vc145-mt.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Debug/assimp-vc145-mt.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Release
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/glfw/bin/glfw3.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Release/glfw3.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Release
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/assimp/bin/assimp-vc145-mt.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/Release/assimp-vc145-mt.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/glfw/bin/glfw3.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/MinSizeRel/glfw3.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/assimp/bin/assimp-vc145-mt.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/MinSizeRel/assimp-vc145-mt.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_INCLUDE_NONE;SOL_ALL_SAFETIES_ON=1;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glad\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glm\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\stb_image\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\glfw\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\sol\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\lua\src;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\..\vendor\assimp\include;C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message>	</Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/glfw/bin/glfw3.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/RelWithDebInfo/glfw3.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/vendor/assimp/bin/assimp-vc145-mt.dll C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineEditor/RelWithDebInfo/assimp-vc145-mt.dll
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/EngineCore/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine -BC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build --check-stamp-file C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/EngineCore/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine -BC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build --check-stamp-file C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/EngineCore/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine -BC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build --check-stamp-file C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/EngineCore/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine -BC:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build --check-stamp-file C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/CapiEngine/build/EngineCore/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\GLApplication.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\component\Light.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\component\LuaScript.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\component\MeshRenderer.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\component\ModelRenderer.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\component\ScriptInstance.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\component\Transform.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\core\Camera.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\core\Scene.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\lighting\GlobalLight.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\lighting\Skybox.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\managers\InputManager.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\managers\LightManager.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\managers\ResourceManager.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\managers\SceneManager.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\mesh\AssimpLoader.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\mesh\CubeMesh.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\mesh\Mesh.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\mesh\Model.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\mesh\ModelMesh.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\mesh\QuadMesh.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\mesh\TriangleMesh.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\serialize\JsonSerializer.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\surface\Material.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\surface\Shader.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\surface\Texture.cpp" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\src\utils\Raycast.cpp" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\GLApplication.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\component\Light.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\component\LuaScript.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\component\MeshRenderer.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\component\ModelRenderer.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\component\ScriptInstance.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\component\Transform.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\core\Camera.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\core\KeyCode.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\core\Scene.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\ec\component.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\ec\ec.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\ec\entity.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\lighting\GlobalLight.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\lighting\PointLight.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\lighting\ShadowMap.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\lighting\Skybox.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\managers\InputManager.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\managers\LightManager.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\managers\ResourceManager.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\managers\SceneManager.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\AssimpLoader.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\CubeMesh.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\Mesh.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\MeshID.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\Model.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\ModelMesh.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\QuadMesh.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\mesh\TriangleMesh.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\register\ComponentRegistry.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\register\LuaRegistry.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\serialize\JsonSerializer.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\serialize\Serializable.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\surface\Material.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\surface\Shader.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\surface\Texture.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\utils\Raycast.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\utils\Singleton.h" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\utils\json.hpp" />
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineCore\include\utils\logger.h" />
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\glad\src\glad.c" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\ZERO_CHECK.vcxproj">
+      <Project>{90E4CBDE-806F-3A85-96EC-3ECF9DFC7EC7}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\build\EngineCore\lua_static.vcxproj">
+      <Project>{0D3EFAFC-201B-345D-B59E-66EDE31F4F85}</Project>
+      <Name>lua_static</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

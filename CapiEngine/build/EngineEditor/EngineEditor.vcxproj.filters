@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\EditorApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\drawGUI\component\GlobalLightGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\drawGUI\component\LightGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\drawGUI\component\LuaScriptGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\drawGUI\component\MeshRendererGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\drawGUI\component\ModelRendererGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\drawGUI\component\TransformGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\drawGUI\material\MaterialGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\managers\UIManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\project\ProjectBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\project\ProjectFileData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\project\ProjectLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\windows\ConsoleWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\windows\FileExplorerWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\windows\InspectorWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\windows\LightingWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\windows\ProjectWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\windows\SceneWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\src\windows\ViewportWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\imgui\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\imgui\imgui_demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\imgui\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\imgui\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\imgui\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\imgui\imgui_impl_glfw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\vendor\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\EditorApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\DrawGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\component\GlobalLightGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\component\LightGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\component\LuaScriptGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\component\MeshRendererGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\component\ModelRendererGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\component\TransformGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\drawGUI\material\MaterialGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\managers\UIManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\project\ProjectBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\project\ProjectFileData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\project\ProjectLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\utils\FileExplorer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\utils\ImGuiUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\ConsoleWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\FileExplorerWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\InspectorWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\LightingWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\ProjectWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\SceneWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\UIGroups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\ViewportWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\include\windows\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\EngineEditor\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\manza\Desktop\UNIVERSIDAD\GitHub\MotorC++\CapiEngine\recursos.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{F725B498-ED7D-3FC4-B01A-1125B22D621D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{996C4F5D-D7FB-3EFC-A9D1-67E9ABF98214}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

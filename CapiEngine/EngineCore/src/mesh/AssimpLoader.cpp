@@ -6,62 +6,64 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <glm/gtc/type_ptr.hpp>
 
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
+#include <filesystem>
 
 namespace cme {
 
-	// load
-	std::vector<SubMesh> AssimpLoader::load(const std::string& path,
-		const std::string& defaultShaderName)
-	{
+	aiTextureType AssimpLoader::resolveType(const aiMaterial* mat,std::initializer_list<aiTextureType> candidates) {
+		for (auto t : candidates)
+			if (mat->GetTextureCount(t) > 0) return t;
+		return aiTextureType_NONE;
+	}
+
+	std::vector<SubMesh> AssimpLoader::load(const std::string& path, const std::string& defaultShaderName) {
 		Assimp::Importer importer;
 
 		const aiScene* scene = importer.ReadFile(path,
-			aiProcess_Triangulate |  // todo a triángulos
-			aiProcess_FlipUVs |  // OpenGL: UV origen abajo-izquierda
-			aiProcess_GenSmoothNormals |  // genera normales si el modelo no las tiene
-			aiProcess_CalcTangentSpace |  // útil para normal mapping futuro
-			aiProcess_JoinIdenticalVertices |
-			aiProcess_PreTransformVertices);
+			aiProcess_Triangulate |
+			aiProcess_FlipUVs |
+			aiProcess_GenSmoothNormals |
+			aiProcess_CalcTangentSpace |
+			aiProcess_JoinIdenticalVertices);
+		// SIN aiProcess_PreTransformVertices — manejamos las transforms manualmente
 
 		if (!scene || (scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE) || !scene->mRootNode) {
 			LOG_ERROR(std::string("AssimpLoader::load — ") + importer.GetErrorString());
 			return {};
 		}
 
-		// Directorio base del archivo (para resolver texturas relativas)
 		std::string directory = path.substr(0, path.find_last_of("/\\"));
 
 		std::vector<SubMesh> result;
-		processNode(scene->mRootNode, scene, directory, defaultShaderName, result);
+		processNode(scene->mRootNode, scene, directory, defaultShaderName,
+			result, glm::mat4(1.0f));
 		return result;
 	}
 
-	// processNode (recursivo)
-	void AssimpLoader::processNode(const aiNode* node,
-		const aiScene* scene,
-		const std::string& directory,
-		const std::string& defaultShaderName,
-		std::vector<SubMesh>& out)
-	{
+	void AssimpLoader::processNode(const aiNode* node, const aiScene* scene, const std::string& directory, const std::string& defaultShaderName,
+		std::vector<SubMesh>& out, const glm::mat4& parentTransform) {
+
+		// Assimp guarda matrices en row-major; GLM las espera column-major → transponemos
+		glm::mat4 nodeLocal = glm::transpose(
+			glm::make_mat4(&node->mTransformation.a1));
+
+		glm::mat4 globalTransform = parentTransform * nodeLocal;
+
 		for (unsigned int i = 0; i < node->mNumMeshes; ++i) {
 			const aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-			out.push_back(processMesh(mesh, scene, directory, defaultShaderName));
+			SubMesh sub = processMesh(mesh, scene, directory, defaultShaderName);
+			sub.localTransform = globalTransform;
+			out.push_back(std::move(sub));
 		}
 
 		for (unsigned int i = 0; i < node->mNumChildren; ++i)
-			processNode(node->mChildren[i], scene, directory, defaultShaderName, out);
+			processNode(node->mChildren[i], scene, directory, defaultShaderName,
+				out, globalTransform);
 	}
 
-	// processMesh
-	SubMesh AssimpLoader::processMesh(const aiMesh* mesh,
-		const aiScene* scene,
-		const std::string& directory,
-		const std::string& defaultShaderName)
-	{
+	SubMesh AssimpLoader::processMesh(const aiMesh* mesh, const aiScene* scene, const std::string& directory, const std::string& defaultShaderName) {
 		std::vector<glm::vec3>  vertices;
 		std::vector<glm::vec3>  normals;
 		std::vector<glm::vec2>  texCoords;
@@ -71,113 +73,154 @@ namespace cme {
 		normals.reserve(mesh->mNumVertices);
 		texCoords.reserve(mesh->mNumVertices);
 
-		// --- Vértices ---
 		for (unsigned int i = 0; i < mesh->mNumVertices; ++i) {
 			vertices.emplace_back(mesh->mVertices[i].x,
 				mesh->mVertices[i].y,
 				mesh->mVertices[i].z);
 
-			if (mesh->HasNormals())
-				normals.emplace_back(mesh->mNormals[i].x,
-					mesh->mNormals[i].y,
-					mesh->mNormals[i].z);
-			else
-				normals.emplace_back(0.0f, 1.0f, 0.0f); // normal por defecto: arriba
+			normals.emplace_back(mesh->HasNormals()
+				? glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z)
+				: glm::vec3(0.0f, 1.0f, 0.0f));
 
-			// Assimp soporta hasta 8 canales UV; usamos el primero
-			if (mesh->mTextureCoords[0])
-				texCoords.emplace_back(mesh->mTextureCoords[0][i].x,
-					mesh->mTextureCoords[0][i].y);
-			else
-				texCoords.emplace_back(0.0f, 0.0f);
+			texCoords.emplace_back(mesh->mTextureCoords[0]
+				? glm::vec2(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y)
+				: glm::vec2(0.0f));
 		}
 
-		// --- Índices ---
 		indices.reserve(mesh->mNumFaces);
 		for (unsigned int i = 0; i < mesh->mNumFaces; ++i) {
 			const aiFace& face = mesh->mFaces[i];
-			// Tras aiProcess_Triangulate siempre son 3 índices
 			if (face.mNumIndices == 3)
-				indices.emplace_back(face.mIndices[0],
-					face.mIndices[1],
-					face.mIndices[2]);
+				indices.emplace_back(face.mIndices[0], face.mIndices[1], face.mIndices[2]);
 		}
 
-		// --- Construir SubMesh ---
 		SubMesh sub;
 		sub.mesh = std::make_unique<ModelMesh>(vertices, normals, texCoords, indices);
-
-		// --- Material ---
 		sub.material = std::make_unique<Material>();
 
 		Shader* shader = rscrM().getShader(defaultShaderName);
 		if (shader)
 			sub.material->setShader(shader);
 		else
-			LOG_WARN("AssimpLoader: shader '" + defaultShaderName + "' no encontrado en ResourceManager");
+			LOG_WARN("AssimpLoader: shader '" + defaultShaderName + "' no encontrado");
 
 		if (mesh->mMaterialIndex >= 0) {
 			const aiMaterial* aiMat = scene->mMaterials[mesh->mMaterialIndex];
 
-			// Color difuso como fallback si no hay textura
+			// Color difuso fallback
 			aiColor3D color(1.0f, 1.0f, 1.0f);
 			aiMat->Get(AI_MATKEY_COLOR_DIFFUSE, color);
 			sub.material->setVec3("albedoColor", glm::vec3(color.r, color.g, color.b));
 
-			// Textura difusa / albedo
-			Texture* diffuseTex = loadMaterialTexture(aiMat, aiTextureType_DIFFUSE, directory, sub);
-			Texture* specTex = loadMaterialTexture(aiMat, aiTextureType_SPECULAR, directory, sub);
-			Texture* normalTex = loadMaterialTexture(aiMat, aiTextureType_NORMALS, directory, sub);
-			Texture* roughTex = loadMaterialTexture(aiMat, aiTextureType_DIFFUSE_ROUGHNESS, directory, sub);
+			// Albedo: BASE_COLOR (FBX PBR) o DIFFUSE (legacy OBJ/FBX)
+			auto diffuseType = resolveType(aiMat, { aiTextureType_BASE_COLOR,
+													 aiTextureType_DIFFUSE });
+			// Normal: NORMAL_CAMERA (FBX PBR) o NORMALS (legacy)
+			auto normalType = resolveType(aiMat, { aiTextureType_NORMAL_CAMERA,
+													 aiTextureType_NORMALS });
+			// Metalness
+			auto metalType = resolveType(aiMat, { aiTextureType_METALNESS,
+													 aiTextureType_SPECULAR });
+			// Roughness
+			auto roughType = resolveType(aiMat, { aiTextureType_DIFFUSE_ROUGHNESS,
+													 aiTextureType_SHININESS });
 
-			// Los nombres de uniform deben coincidir con tu shader
+			Texture* diffuseTex = (diffuseType != aiTextureType_NONE)
+				? loadMaterialTexture(aiMat, diffuseType, directory, sub) : nullptr;
+			Texture* normalTex = (normalType != aiTextureType_NONE)
+				? loadMaterialTexture(aiMat, normalType, directory, sub) : nullptr;
+			Texture* metalTex = (metalType != aiTextureType_NONE)
+				? loadMaterialTexture(aiMat, metalType, directory, sub) : nullptr;
+			Texture* roughTex = (roughType != aiTextureType_NONE)
+				? loadMaterialTexture(aiMat, roughType, directory, sub) : nullptr;
+
+			// Nombres de uniform — ajusta si tu shader usa otros
 			if (diffuseTex) sub.material->setTexture("albedoMap", diffuseTex);
-			if (specTex)    sub.material->setTexture("specularMap", specTex);
 			if (normalTex)  sub.material->setTexture("normalMap", normalTex);
+			if (metalTex)   sub.material->setTexture("metallicMap", metalTex);
 			if (roughTex)   sub.material->setTexture("roughnessMap", roughTex);
+		}
+
+		if (mesh->mMaterialIndex >= 0) {
+			const aiMaterial* aiMat = scene->mMaterials[mesh->mMaterialIndex];
+			aiString matName;
+			aiMat->Get(AI_MATKEY_NAME, matName);
+			LOG_INFO("=== Material: " + std::string(matName.C_Str()) + " ===");
+
+			// Nombres de todos los tipos conocidos de Assimp
+			const char* typeNames[] = {
+				"NONE","DIFFUSE","SPECULAR","AMBIENT","EMISSIVE","HEIGHT",
+				"NORMALS","SHININESS","OPACITY","DISPLACEMENT","LIGHTMAP",
+				"REFLECTION","BASE_COLOR","NORMAL_CAMERA","EMISSION_COLOR",
+				"METALNESS","DIFFUSE_ROUGHNESS","AMBIENT_OCCLUSION","UNKNOWN"
+			};
+			for (int t = 1; t <= 18; ++t) {
+				unsigned int count = aiMat->GetTextureCount((aiTextureType)t);
+				if (count > 0) {
+					aiString p;
+					aiMat->GetTexture((aiTextureType)t, 0, &p);
+					LOG_INFO(std::format("  tipo {:2d} ({:20s}) → {}",
+						t, typeNames[t], p.C_Str()));
+				}
+			}
 		}
 
 		return sub;
 	}
 
-	// loadMaterialTexture
-	Texture* AssimpLoader::loadMaterialTexture(const aiMaterial* mat,
-		aiTextureType     type,
-		const std::string& directory,
-		SubMesh& outSubMesh)
-	{
-		LOG_INFO(std::format("AssimpLoader: buscando textura en: {}", directory));
-		if (mat->GetTextureCount(type) == 0)
-			return nullptr;
-
+	Texture* AssimpLoader::loadMaterialTexture(const aiMaterial* mat, aiTextureType type, const std::string& directory, SubMesh& outSubMesh) {
 		aiString aiPath;
-		mat->GetTexture(type, 0, &aiPath);   // solo la primera del tipo
+		mat->GetTexture(type, 0, &aiPath);
 		std::string relPath(aiPath.C_Str());
-
-		// Normalizar separadores
 		std::replace(relPath.begin(), relPath.end(), '\\', '/');
 
-		std::string fullPath = directory + "/" + relPath;
+		std::string filename = std::filesystem::path(relPath).filename().string();
 		std::string texName = std::filesystem::path(relPath).stem().string();
 
-		// ¿Ya está cargada en ResourceManager? La reutilizamos (sin ownership aquí)
+		// Caché primero — ResourceManager ya la puede tener cargada
+		// (ProjectLoader carga texturas sueltas de assets/ antes o después del modelo)
 		Texture* existing = rscrM().getTexture(texName);
-		if (existing)
+		if (existing) {
+			LOG_INFO("AssimpLoader: textura reutilizada desde ResourceManager: " + texName);
 			return existing;
+		}
 
-		// Si no, la cargamos y la guardamos en el SubMesh (owner) 
+		// Buscar en disco con varias estrategias de path
+		std::vector<std::string> candidates = {
+			directory + "/" + relPath,               // path relativo tal cual
+			directory + "/" + filename,              // solo nombre en carpeta del modelo
+			directory + "/textures/" + filename,     // subcarpeta textures/
+			directory + "/Textures/" + filename,     // ídem con mayúscula
+			directory + "/maps/" + filename,
+		};
+
+		std::string fullPath;
+		for (auto& c : candidates) {
+			if (std::filesystem::exists(c)) {
+				fullPath = c;
+				break;
+			}
+		}
+
+		if (fullPath.empty()) {
+			LOG_WARN("AssimpLoader: textura no encontrada en disco: " + filename
+				+ "  (directorio modelo: " + directory + ")");
+			return nullptr;
+		}
+
+		// sRGB solo para albedo/diffuse; lineal para todo lo demás
+		TextureType texType = (type == aiTextureType_DIFFUSE ||
+			type == aiTextureType_BASE_COLOR)
+			? TextureType::DEFAULT
+			: TextureType::LINEAR;
+
 		auto tex = std::make_unique<Texture>();
-		TextureType texType = (type == aiTextureType_DIFFUSE)
-			? TextureType::DEFAULT   // sRGB para albedo
-			: TextureType::LINEAR;   // lineal para normal/specular/rough
-
 		tex->load(fullPath, texType);
 		tex->setName(texName);
+		LOG_INFO("AssimpLoader: textura cargada: " + fullPath);
 
 		Texture* rawPtr = tex.get();
 		outSubMesh.ownedTextures.push_back(std::move(tex));
-
-		// Registramos en ResourceManager para que sea reutilizable en otros modelos
 		rscrM().registerTexture(texName, rawPtr);
 
 		return rawPtr;

@@ -5,6 +5,7 @@
 #include <ec/component.h>
 #include <component/Transform.h>
 #include <component/MeshRenderer.h>
+#include <component/ModelRenderer.h>
 #include <component/LuaScript.h>
 #include <mesh/QuadMesh.h>
 #include <mesh/CubeMesh.h>
@@ -122,9 +123,10 @@ namespace cme {
 			for (auto& gObj : _gameObjectsByGroup[i]) {
 				if (!gObj->active()) continue; 
 				auto mr = gObj->getComponent<MeshRenderer>();
-				if (!mr) continue;
-
-				mr->renderDepth(_shadowShader); // solo geometría, sin material
+				auto model = gObj->getComponent<ModelRenderer>();
+				
+				if (mr) mr->renderDepth(_shadowShader); // solo geometría, sin material
+				if (model) model->renderDepth(_shadowShader); // solo geometría, sin material
 			}
 		}
 

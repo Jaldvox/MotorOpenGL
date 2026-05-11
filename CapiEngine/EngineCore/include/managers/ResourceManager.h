@@ -7,6 +7,7 @@
 #include <sol/sol.hpp>
 #include <component/ScriptInstance.h>
 #include <mesh/Model.h>
+#include <string>
 
 namespace fs = std::filesystem;
 
@@ -15,6 +16,12 @@ namespace cme {
 	class ResourceManager : public Singleton<ResourceManager>
 	{
 		friend class Singleton<ResourceManager>;
+	private:
+		struct ModelLaterLoadData {
+			fs::path file;
+			std::string shaderName;
+		};
+
 	private:
 		// ----- SHADERS -----
 		std::unordered_map<std::string, std::unique_ptr<Shader>> _shadersMap;
@@ -31,6 +38,8 @@ namespace cme {
 
 		std::unordered_map<std::string, std::unique_ptr<Model>> _modelsMap;
 		std::vector<std::string> _modelNames;
+		std::vector<ModelLaterLoadData> _modelLaterLoad;
+
 		// Texturas registradas externamente (el owner real es SubMesh::ownedTextures).
 		// Mapa separado para no mezclar ownership con _texturesMap.
 		std::unordered_map<std::string, Texture*> _borrowedTextures;
@@ -54,6 +63,8 @@ namespace cme {
 
 		void registerTexture(const std::string& name, Texture* tex);
 
+		void loadModels();
+
 		/// @brief Busca todos los shaders cargados y los almacena en un vector
 		/// @return Un vector de shaders
 		std::vector<Shader*> getAllShaders();
@@ -70,7 +81,7 @@ namespace cme {
 		void loadShader(fs::path file);
 		void loadTexture(fs::path file);
 		void loadScript(const fs::path& path);
-		Model* loadModel(const fs::path& file, const std::string& shaderName = "default");
+		void loadModel(const fs::path& file, const std::string& shaderName = "default");
 
 		/// @brief Inicializa el Resource Manager
 		/// @return False si falla

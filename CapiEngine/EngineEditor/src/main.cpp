@@ -29,8 +29,13 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	else {
+#ifdef _DEBUG
 		projectPath = "C:/Users/manza/Desktop/UNIVERSIDAD/GitHub/MotorC++/Proyecto1";
 		argumentPath = projectPath / "Proyecto1.capiproj";
+#else
+		std::cout << "No ejecutes el .exe directamente. Abre un archivo .capiproj" << std::endl;
+		return 0;
+#endif
 	}
 
 	

@@ -16,7 +16,7 @@ namespace cme::runtime {
 		".frag", ".vert"
 	};
 
-	enum class ResourceType { Shader, Texture, Script, Unknown };
+	enum class ResourceType { Shader, Texture, Script, Model, Unknown };
 
 	class ResourcesLoader {
 	public:

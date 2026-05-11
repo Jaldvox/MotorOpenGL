@@ -9,6 +9,8 @@ namespace cme::editor {
 		// load project resources
 		loadFilesRecursive(projectPath / "assets");
 
+		rscrM().loadModels();
+
 		return true;
 	}
 
