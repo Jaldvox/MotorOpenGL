@@ -18,7 +18,7 @@ namespace cme::editor {
 		".frag", ".vert"
 	};
 
-	enum class ResourceType { Shader, Texture, Script, Unknown };
+	enum class ResourceType { Shader, Texture, Script, Model, Unknown };
 
 	/// @brief Se encarga de la gesiton de recursos del editor. Utiliza el patron Singleton y se puede acceder a su instancia con rscrM()
 	class ProjectLoader : public Singleton<ProjectLoader>

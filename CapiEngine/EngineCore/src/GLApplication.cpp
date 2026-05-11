@@ -19,6 +19,7 @@
 #include <component/MeshRenderer.h>
 #include <component/Light.h>
 #include <component/LuaScript.h>
+#include <component/ModelRenderer.h>
 
 #include <sol/sol.hpp>
 
@@ -118,6 +119,7 @@ namespace cme {
 		ComponentRegistry::registerComponent<MeshRenderer>("MeshRenderer");
 		ComponentRegistry::registerComponent<Light>("Light");
 		ComponentRegistry::registerComponent<LuaScript>("LuaScript");
+		ComponentRegistry::registerComponent<ModelRenderer>("ModelRenderer");
 
 		return true;
 	}

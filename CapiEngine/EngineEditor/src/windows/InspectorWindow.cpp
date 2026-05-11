@@ -8,12 +8,14 @@
 #include <core/Camera.h>
 #include <component/Transform.h>
 #include <component/MeshRenderer.h>
+#include <component/ModelRenderer.h>
 #include <component/Light.h>
 #include <component/LuaScript.h>
 
 #include <drawGUI/material/MaterialGUI.h>
 #include <drawGUI/component/TransformGUI.h>
 #include <drawGUI/component/MeshRendererGUI.h>
+#include <drawGUI/component/ModelRendererGUI.h>
 #include <drawGUI/component/LightGUI.h>
 #include <drawGUI/component/LuaScriptGUI.h>
 
@@ -86,6 +88,8 @@ namespace cme::editor {
 					entitySp->addComponent<Transform>();
 				if (ImGui::Selectable("Mesh Renderer") && !entitySp->hasComponent<MeshRenderer>())
 					entitySp->addComponent<MeshRenderer>();
+				if (ImGui::Selectable("Model Renderer") && !entitySp->hasComponent<ModelRenderer>())
+					entitySp->addComponent<ModelRenderer>();
 				if (ImGui::Selectable("Light") && !entitySp->hasComponent<Light>())
 					entitySp->addComponent<Light>();
 				if (ImGui::Selectable("Lua Script") && !entitySp->hasComponent<LuaScript>())
@@ -126,6 +130,11 @@ namespace cme::editor {
 		// Registramos el MeshRenderer
 		_componentUIRegistry[typeid(cme::MeshRenderer)] = [](ec::Component* c) {
 			MeshRendererGUI gui(static_cast<MeshRenderer*>(c));
+			gui.drawOnInspector();
+			};
+
+		_componentUIRegistry[typeid(cme::ModelRenderer)] = [](ec::Component* c) {
+			ModelRendererGUI gui(static_cast<ModelRenderer*>(c));
 			gui.drawOnInspector();
 			};
 

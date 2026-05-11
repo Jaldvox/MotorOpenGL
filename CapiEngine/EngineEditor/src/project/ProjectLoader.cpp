@@ -43,6 +43,9 @@ namespace cme::editor {
 		case ResourceType::Script:
 			rscrM().loadResource<ScriptInstance>(file);
 			break;
+		case ResourceType::Model:
+			rscrM().loadResource<Model>(file);
+			break;
 
 		default:
 			// Siempre es buena idea tener un default para cazar errores
@@ -58,6 +61,9 @@ namespace cme::editor {
 
 			if (extension == ".lua") {
 				return ResourceType::Script;
+			}
+			else if (extension == ".fbx") {
+				return ResourceType::Model;
 			}
 			else if (std::count(SHADER_EXTENSIONS.begin(), SHADER_EXTENSIONS.end(), extension)) {
 				return ResourceType::Shader;

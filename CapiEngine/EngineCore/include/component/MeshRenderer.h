@@ -11,7 +11,7 @@ namespace cme {
 	class Transform;
 
 	/// @brief Componente que se encarga de renderizar a partir de una malla dada
-	class MeshRenderer : public ec::Component, public ec::RenderComponent {
+	class MeshRenderer : public ::ec::Component, public ::ec::RenderComponent {
 	public:
 		std::unique_ptr<Mesh> _mesh = nullptr;
 		Camera* _cam = nullptr;
@@ -19,7 +19,7 @@ namespace cme {
 		std::string _currentMeshType;
 		static constexpr std::array<const char*, 4> MESH_T_NAMES = { "None", "Triangle", "Quad", "Cube" };
 
-		__CMPID_DECL__(ec::comp::MESH_RENDERER)
+		__CMPID_DECL__(::ec::comp::MESH_RENDERER)
 
 		MeshRenderer();
 		MeshRenderer(Mesh* mesh);

@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <sol/sol.hpp>
 #include <component/ScriptInstance.h>
+#include <mesh/Model.h>
 
 namespace fs = std::filesystem;
 
@@ -28,6 +29,12 @@ namespace cme {
 		std::unordered_map<std::string, ScriptInstance> _scripts;
 		std::vector<std::string> _scriptsNames;
 
+		std::unordered_map<std::string, std::unique_ptr<Model>> _modelsMap;
+		std::vector<std::string> _modelNames;
+		// Texturas registradas externamente (el owner real es SubMesh::ownedTextures).
+		// Mapa separado para no mezclar ownership con _texturesMap.
+		std::unordered_map<std::string, Texture*> _borrowedTextures;
+
 	public:
 		virtual ~ResourceManager();
 
@@ -43,6 +50,9 @@ namespace cme {
 		Shader* getShader(std::string key);
 		Texture* getTexture(std::string key);
 		ScriptInstance* getScript(std::string& key);
+		Model* getModel(const std::string& key);
+
+		void registerTexture(const std::string& name, Texture* tex);
 
 		/// @brief Busca todos los shaders cargados y los almacena en un vector
 		/// @return Un vector de shaders
@@ -52,6 +62,7 @@ namespace cme {
 		std::vector<std::string> getAllShaderNames();
 		std::vector<std::string> getAllTextureNames();
 		std::vector<std::string> getAllScriptNames();
+		std::vector<std::string> getAllModelNames() const { return _modelNames; }
 
 	private:
 		ResourceManager() = default;
@@ -59,13 +70,14 @@ namespace cme {
 		void loadShader(fs::path file);
 		void loadTexture(fs::path file);
 		void loadScript(const fs::path& path);
+		Model* loadModel(const fs::path& file, const std::string& shaderName = "default");
 
 		/// @brief Inicializa el Resource Manager
 		/// @return False si falla
 		bool init();
 	public:
-		template<typename T>
-		void loadResource(const fs::path& file) {
+		template<typename T, typename ...Targs>
+		void loadResource(const fs::path& file, Targs &&...args) {
 			std::string name = file.stem().string(); // nombre sin extensión
 
 			if constexpr (std::is_same_v<T, Shader>) {
@@ -78,6 +90,9 @@ namespace cme {
 			}
 			else if constexpr (std::is_same_v<T, ScriptInstance>) {
 				loadScript(file);
+			}
+			else if constexpr (std::is_same_v<T, Model>) {
+				loadModel(file);
 			}
 			else {
 				static_assert(!sizeof(T), "Tipo de recurso no soportado");

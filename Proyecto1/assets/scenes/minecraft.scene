@@ -5,7 +5,7 @@
             "group": 0,
             "entities": [
                 {
-                    "name": "Cube",
+                    "name": "Grass",
                     "components": [
                         {
                             "type": "Transform",
@@ -79,7 +79,7 @@
                     ]
                 },
                 {
-                    "name": "Cube",
+                    "name": "Cobblestone",
                     "components": [
                         {
                             "type": "Transform",
@@ -163,7 +163,7 @@
                     ]
                 },
                 {
-                    "name": "Cube",
+                    "name": "Netherrack",
                     "components": [
                         {
                             "type": "Transform",
@@ -231,7 +231,7 @@
                     ]
                 },
                 {
-                    "name": "Cube",
+                    "name": "Glowstone",
                     "components": [
                         {
                             "type": "Transform",
@@ -402,6 +402,37 @@
                                         "name": "FPSController"
                                     }
                                 ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Cube",
+                    "components": [
+                        {
+                            "type": "Transform",
+                            "data": {
+                                "position": [
+                                    0.0,
+                                    3.0,
+                                    0.0
+                                ],
+                                "scale": [
+                                    1.0,
+                                    1.0,
+                                    1.0
+                                ],
+                                "rotation": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ]
+                            }
+                        },
+                        {
+                            "type": "ModelRenderer",
+                            "data": {
+                                "modelPath": ""
                             }
                         }
                     ]

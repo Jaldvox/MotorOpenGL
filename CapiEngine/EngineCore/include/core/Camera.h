@@ -75,6 +75,15 @@ namespace cme {
 		/// @param h  El nuevo height
 		void onResize(float w, float h);
 
+		/// @brief Manda a la gpu la matriz de proyeccion
+		/// @param shader El shader objetivo a modificar
+		void uploadProjectionToGPU(Shader* shader);
+
+		/// @brief Manda a la gpu la matriz de vista
+		/// @param shader El shader objetivo a modificar
+		/// @param model La matriz de modelado del mesh
+		void uploadViewToGPU(Shader* shader, glm::mat4 model, glm::mat3 normal, ec::entity_t ent);
+
 		const glm::vec3& getPosition() const { return _cameraPos; }
 		const glm::vec3& getCameraFront() const { return _cameraDirection; }
 		const glm::vec3& getCameraUp() const { return _cameraUp; }
@@ -100,16 +109,6 @@ namespace cme {
 
 		float nearPlane() { return _nearDistance; }
 		float farPlane() { return _farDistance; }
-
-	private:
-		/// @brief Manda a la gpu la matriz de proyeccion
-		/// @param shader El shader objetivo a modificar
-		void uploadProjectionToGPU(Shader* shader);
-
-		/// @brief Manda a la gpu la matriz de vista
-		/// @param shader El shader objetivo a modificar
-		/// @param model La matriz de modelado del mesh
-		void uploadViewToGPU(Shader* shader, glm::mat4 model, glm::mat3 normal, ec::entity_t ent);
 	};
 }
 

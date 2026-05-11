@@ -4,6 +4,7 @@
 #include <surface/Texture.h>
 #include <managers/SceneManager.h>
 #include <core/Scene.h>
+#include <mesh/AssimpLoader.h>
 
 namespace fs = std::filesystem;
 
@@ -144,5 +145,33 @@ namespace cme {
 
 		_scripts[name] = scriptTemplate;
 		_scriptsNames.push_back(name);
+	}
+
+	Model* ResourceManager::loadModel(const fs::path& file, const std::string& shaderName) {
+		std::string key = file.stem().string();
+
+		auto it = _modelsMap.find(key);
+		if (it != _modelsMap.end())
+			return it->second.get();   // ya cargado
+
+		auto model = std::make_unique<Model>(key);
+		model->load(file.string(), shaderName);
+
+		Model* raw = model.get();
+		_modelsMap[key] = std::move(model);
+		_modelNames.push_back(key);
+		return raw;
+	}
+
+	Model* ResourceManager::getModel(const std::string& key) {
+		auto it = _modelsMap.find(key);
+		return (it != _modelsMap.end()) ? it->second.get() : nullptr;
+	}
+
+	void ResourceManager::registerTexture(const std::string& name, Texture* tex) {
+		// No registrar si ya existe en cualquiera de los dos mapas
+		if (_texturesMap.count(name) || _borrowedTextures.count(name)) return;
+		_borrowedTextures[name] = tex;
+		_texturesNames.push_back(name);
 	}
 }
